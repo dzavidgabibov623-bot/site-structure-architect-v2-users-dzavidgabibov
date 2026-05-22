@@ -15,6 +15,7 @@
         --soft: #eeeeea;
         --radius: 8px;
         --wrap: 1180px;
+        --topbar-space: 112px;
       }
 
       * {
@@ -34,12 +35,14 @@
       }
 
       .topbar {
-        position: sticky;
-        top: 0;
+        position: fixed;
+        top: 16px;
+        left: 50%;
+        transform: translateX(-50%);
         z-index: 10;
         width: min(var(--wrap), calc(100% - 32px));
         min-height: 64px;
-        margin: 16px auto 0;
+        margin: 0 auto;
         padding: 10px 14px 10px 20px;
         display: flex;
         align-items: center;
@@ -81,16 +84,17 @@
 
       main {
         width: 100%;
-        margin: 24px 0;
+        margin: 0;
         background: transparent;
       }
 
       section {
+        scroll-margin-top: var(--topbar-space);
         position: relative;
-        width: min(var(--wrap), calc(100% - 32px));
-        margin: 0 auto;
+        width: 100%;
+        margin: 0;
         min-height: 520px;
-        padding: 44px;
+        padding: 44px max(44px, calc((100vw - var(--wrap)) / 2 + 44px));
         border: 1px solid var(--line);
         border-bottom: 0;
         background: var(--surface);
@@ -98,19 +102,6 @@
 
       section:last-child {
         border-bottom: 1px solid var(--line);
-      }
-
-      .num {
-        position: absolute;
-        top: 12px;
-        left: 12px;
-        width: 28px;
-        height: 28px;
-        display: grid;
-        place-items: center;
-        border: 1px solid var(--soft-line);
-        font-size: 14px;
-        font-weight: 700;
       }
 
       h1,
@@ -173,14 +164,15 @@
       .hero {
         width: 100%;
         min-height: 100svh;
-        margin: 24px 0 0;
-        padding: clamp(48px, 8vh, 96px) max(44px, calc((100vw - var(--wrap)) / 2 + 44px));
+        margin: 0;
+        padding: var(--topbar-space) max(44px, calc((100vw - var(--wrap)) / 2 + 44px)) clamp(48px, 8vh, 96px);
         border-left: 0;
         border-right: 0;
         display: grid;
         grid-template-columns: 1fr;
         gap: 36px;
-        align-items: center;
+        align-items: start;
+        align-content: start;
       }
 
       .hero-copy {
@@ -527,17 +519,7 @@
         min-height: 190px;
         padding: 24px;
         display: grid;
-        gap: 18px;
-        align-content: start;
-      }
-
-      .icon-box {
-        width: 42px;
-        height: 42px;
-        border: 1px solid var(--soft-line);
-        display: grid;
-        place-items: center;
-        font-weight: 800;
+        align-content: center;
       }
 
       .faq {
@@ -595,8 +577,8 @@
 
       @media (max-width: 900px) {
         .topbar {
-          width: min(100% - 20px, var(--wrap));
-          margin-top: 10px;
+          width: 100%;
+          top: 0;
           align-items: flex-start;
           flex-direction: column;
           gap: 12px;
@@ -619,7 +601,7 @@
         }
 
         section {
-          width: min(100% - 20px, var(--wrap));
+          width: 100%;
           min-height: auto;
           padding: 36px 22px;
         }
@@ -627,8 +609,9 @@
         .hero {
           width: 100%;
           min-height: 100svh;
-          margin-top: 10px;
-          padding: 44px 22px;
+          margin-top: 0;
+          padding: var(--topbar-space) 10px 44px;
+          gap: 56px;
         }
 
         h1 {
@@ -689,21 +672,20 @@
     </style>
   </head>
   <body>
-    <header class="topbar">
-      <div class="brand">DG</div>
-      <nav class="nav" aria-label="Навигация по лендингу">
-        <a href="#problems">Проблемы</a>
-        <a href="#process">Процесс</a>
-        <a href="#quiz">Квиз</a>
-        <a href="#projects">Кейсы</a>
-        <a href="#tariffs">Тарифы</a>
-        <a href="#faq">FAQ</a>
-        <a class="nav-cta" href="#quiz">Разобрать задачу</a>
-      </nav>
-    </header>
     <main>
       <section class="hero">
-        <div class="num">1</div>
+        <header class="topbar">
+          <div class="brand">JS</div>
+          <nav class="nav" aria-label="Навигация по лендингу">
+            <a href="#problems">Проблемы</a>
+            <a href="#process">Процесс</a>
+            <a href="#quiz">Квиз</a>
+            <a href="#projects">Кейсы</a>
+            <a href="#tariffs">Тарифы</a>
+            <a href="#faq">FAQ</a>
+            <a class="nav-cta" href="#quiz">Разобрать задачу</a>
+          </nav>
+        </header>
         <div class="hero-copy">
           <h1>Привлекайте больше клиентов с сайтом, который ведет к заявке</h1>
           <p>Для предпринимателей, которым нужен не просто сайт "для галочки", а понятный инструмент для привлечения клиентов.</p>
@@ -712,7 +694,6 @@
       </section>
 
       <section id="problems">
-        <div class="num">2</div>
         <div class="section-head">
           <h2>3 причины, почему сайт не приносит заявки</h2>
           <p>Даже красивый сайт может терять клиентов, если в нем нет ясного предложения, доверия и понятного следующего шага.</p>
@@ -737,7 +718,6 @@
       </section>
 
       <section id="process">
-        <div class="num">3</div>
         <div class="compare">
           <article class="compare-col">
             <h2>Сайт-визитка</h2>
@@ -775,7 +755,6 @@
       </section>
 
       <section>
-        <div class="num">4</div>
         <div class="section-head">
           <h2>Как проходит работа над сайтом</h2>
           <p>Сначала разбираем задачу и структуру, потом переходим к дизайну, сборке и запуску.</p>
@@ -815,7 +794,6 @@
       </section>
 
       <section class="quiz" id="quiz">
-        <div class="num">5</div>
         <div class="quiz-left">
           <div class="quiz-intro">
             <h2>Ответьте на 5 вопросов</h2>
@@ -847,7 +825,6 @@
       </section>
 
       <section id="projects">
-        <div class="num">6</div>
         <h2 style="margin-bottom: 24px">Мои проекты</h2>
         <div class="projects-grid">
           <article class="project-card card">
@@ -890,7 +867,6 @@
       </section>
 
       <section id="tariffs">
-        <div class="num">7</div>
         <div class="section-head">
           <h2>Тарифы</h2>
         </div>
@@ -938,40 +914,32 @@
       </section>
 
       <section>
-        <div class="num">8</div>
         <div class="section-head">
           <h2>Для кого подойдут мои услуги</h2>
         </div>
         <div class="audience-list">
           <article class="audience-item card">
-            <span class="icon-box">1</span>
             <div><h3>Предпринимателям</h3><p>Нужен сайт, который помогает продавать и привлекать клиентов.</p></div>
           </article>
           <article class="audience-item card">
-            <span class="icon-box">2</span>
             <div><h3>Экспертам</h3><p>Хотят понятный сайт для заявок на консультации и услуги.</p></div>
           </article>
           <article class="audience-item card">
-            <span class="icon-box">3</span>
             <div><h3>Локальному бизнесу</h3><p>Нужен современный сайт, который выделяет среди конкурентов.</p></div>
           </article>
           <article class="audience-item card">
-            <span class="icon-box">4</span>
             <div><h3>Студиям, школам и сервисам</h3><p>Требуется сайт с несколькими услугами и страницами.</p></div>
           </article>
           <article class="audience-item card">
-            <span class="icon-box">5</span>
             <div><h3>Тем, кому нужен сайт для заявок</h3><p>Фокус на результате: заявки, звонки, продажи.</p></div>
           </article>
           <article class="audience-item card">
-            <span class="icon-box">6</span>
             <div><h3>Сложным проектам</h3><p>Нужны интерфейсы, интеграции, автоматизация и нестандартная логика.</p></div>
           </article>
         </div>
       </section>
 
       <section class="faq" id="faq">
-        <div class="num">9</div>
         <div class="faq-wrap">
           <div>
             <h2 style="margin-bottom: 24px">FAQ</h2>
@@ -999,5 +967,31 @@
         </footer>
       </section>
     </main>
+    <script>
+      const root = document.documentElement;
+      const topbar = document.querySelector(".topbar");
+
+      function updateTopbarSpace() {
+        const topOffset = window.matchMedia("(max-width: 900px)").matches ? 0 : 16;
+        const bottomGap = window.matchMedia("(max-width: 900px)").matches ? 18 : 32;
+        const height = topbar.offsetHeight + topOffset + bottomGap;
+        root.style.setProperty("--topbar-space", `${height}px`);
+      }
+
+      updateTopbarSpace();
+      window.addEventListener("resize", updateTopbarSpace);
+
+      document.querySelectorAll('.nav a[href^="#"]').forEach((link) => {
+        link.addEventListener("click", (event) => {
+          const target = document.querySelector(link.getAttribute("href"));
+          if (!target) return;
+
+          event.preventDefault();
+          const offset = parseFloat(getComputedStyle(root).getPropertyValue("--topbar-space")) || 0;
+          const top = target.getBoundingClientRect().top + window.scrollY - offset + 8;
+          window.scrollTo({ top, behavior: "smooth" });
+        });
+      });
+    </script>
   </body>
 </html>
