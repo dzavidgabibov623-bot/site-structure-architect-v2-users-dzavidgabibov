@@ -1,0 +1,1296 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wireframe Landing</title>
+    <style>
+      :root {
+        --bg: #12110f;
+        --surface: #f4f1eb;
+        --surface-2: #ebe5da;
+        --ink: #10100f;
+        --muted: #6b675f;
+        --line: #161514;
+        --soft-line: rgba(22, 21, 20, 0.18);
+        --soft: #ded7cc;
+        --radius: 3px;
+        --wrap: 1180px;
+        --topbar-space: 112px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background:
+          radial-gradient(circle at 18% 6%, rgba(255, 255, 255, 0.08), transparent 22%),
+          linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 560px),
+          var(--bg);
+        color: var(--ink);
+        font-family: Inter, Arial, Helvetica, sans-serif;
+        line-height: 1.35;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      .topbar {
+        position: fixed;
+        top: 22px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 10;
+        width: min(var(--wrap), calc(100% - 32px));
+        min-height: 58px;
+        margin: 0 auto;
+        padding: 9px 10px 9px 18px;
+        display: flex;
+        align-items: center;
+        gap: 22px;
+        border: 1px solid rgba(244, 241, 235, 0.72);
+        background: rgba(244, 241, 235, 0.9);
+        box-shadow: 0 24px 70px rgba(0, 0, 0, 0.24);
+        backdrop-filter: blur(18px);
+      }
+
+      .brand {
+        font-size: 14px;
+        font-weight: 900;
+        letter-spacing: -0.04em;
+        white-space: nowrap;
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        margin-left: auto;
+      }
+
+      .nav a {
+        color: var(--ink);
+        text-decoration: none;
+        font-size: 12px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+
+      .nav-cta {
+        min-height: 38px;
+        padding: 0 16px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      main {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        background: transparent;
+        box-shadow: none;
+      }
+
+      section {
+        scroll-margin-top: var(--topbar-space);
+        position: relative;
+        width: 100%;
+        margin: 0;
+        min-height: 520px;
+        padding: 64px 0;
+        border-top: 1px solid rgba(22, 21, 20, 0.16);
+        border-right: 0;
+        border-bottom: 0;
+        border-left: 0;
+        background: var(--surface);
+      }
+
+      section:last-child {
+        border-bottom: 1px solid var(--line);
+      }
+
+      section > .container,
+      .hero > .container {
+        width: min(100%, 1320px);
+        margin: 0 auto;
+        padding-inline: clamp(20px, 4vw, 56px);
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+      }
+
+      h1 {
+        max-width: 1120px;
+        font-size: clamp(44px, 5.6vw, 76px);
+        line-height: 0.88;
+        font-weight: 900;
+        letter-spacing: -0.07em;
+        text-transform: uppercase;
+      }
+
+      h2 {
+        font-size: clamp(34px, 4.6vw, 70px);
+        line-height: 0.9;
+        font-weight: 900;
+        letter-spacing: -0.06em;
+        text-transform: uppercase;
+      }
+
+      h3 {
+        font-size: 20px;
+        line-height: 1.05;
+        font-weight: 900;
+        letter-spacing: -0.03em;
+        text-transform: uppercase;
+      }
+
+      p {
+        color: var(--muted);
+        font-size: 16px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 46px;
+        padding: 0 20px;
+        border: 1px solid var(--line);
+        background: var(--ink);
+        color: white;
+        text-decoration: none;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+        font-size: 12px;
+        border-radius: 999px;
+      }
+
+      .button.outline {
+        background: var(--surface);
+        color: var(--ink);
+      }
+
+      .card {
+        border: 1px solid var(--soft-line);
+        border-radius: var(--radius);
+        background: rgba(255, 255, 255, 0.48);
+      }
+
+      .hero {
+        width: 100%;
+        min-height: 100svh;
+        margin: 0;
+        padding: var(--topbar-space) 0 0;
+        border-left: 0;
+        border-right: 0;
+        display: grid;
+        grid-template-columns: 1fr;
+        align-items: end;
+        align-content: end;
+        overflow: hidden;
+        background:
+          linear-gradient(180deg, rgba(244, 241, 235, 0.98) 0 43%, rgba(244, 241, 235, 0) 43%),
+          linear-gradient(135deg, rgba(19, 18, 16, 0.92), rgba(43, 40, 35, 0.76)),
+          var(--surface);
+      }
+
+      .hero > .container {
+        display: grid;
+        gap: clamp(18px, 3vh, 34px);
+      }
+
+      .hero-copy {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 18px 28px;
+        align-items: end;
+        max-width: none;
+        padding-bottom: 10px;
+      }
+
+      .hero-copy p {
+        grid-column: 1 / 2;
+        max-width: 470px;
+        color: #222;
+        font-size: 15px;
+      }
+
+      .hero-copy .button {
+        grid-column: 2 / 3;
+        grid-row: 2 / 3;
+        align-self: end;
+      }
+
+      .hero-preview {
+        height: clamp(250px, 34vh, 340px);
+        margin: 0;
+        padding: clamp(20px, 3vw, 34px);
+        display: grid;
+        align-content: stretch;
+        overflow: hidden;
+        background:
+          linear-gradient(140deg, rgba(255, 255, 255, 0.12), transparent 38%),
+          linear-gradient(90deg, rgba(6, 6, 5, 0.86), rgba(28, 27, 25, 0.86)),
+          #171614;
+        border-top: 1px solid rgba(244, 241, 235, 0.2);
+      }
+
+      .placeholder {
+        min-height: 150px;
+        border: 1px solid rgba(22, 21, 20, 0.18);
+        background:
+          linear-gradient(135deg, rgba(255, 255, 255, 0.38), transparent 42%),
+          linear-gradient(to top right, transparent 49.5%, rgba(22, 21, 20, 0.16) 50%, transparent 50.5%),
+          linear-gradient(to bottom right, transparent 49.5%, rgba(22, 21, 20, 0.16) 50%, transparent 50.5%),
+          #ddd7ca;
+      }
+
+      .ui-showcase {
+        min-height: 100%;
+        padding: clamp(18px, 3vw, 34px);
+        border: 1px solid rgba(244, 241, 235, 0.22);
+        background:
+          linear-gradient(90deg, rgba(244, 241, 235, 0.08) 1px, transparent 1px),
+          linear-gradient(rgba(244, 241, 235, 0.07) 1px, transparent 1px),
+          linear-gradient(145deg, #26231f, #0c0c0b);
+        background-size: 52px 52px, 52px 52px, auto;
+        display: grid;
+        grid-template-columns: 0.82fr 1.18fr;
+        gap: clamp(18px, 3vw, 34px);
+      }
+
+      .ui-panel,
+      .ui-screen {
+        border: 1px solid rgba(244, 241, 235, 0.2);
+        background: rgba(244, 241, 235, 0.88);
+        min-height: 0;
+      }
+
+      .ui-panel {
+        padding: 22px;
+        display: grid;
+        align-content: space-between;
+        gap: 24px;
+      }
+
+      .ui-kicker {
+        font-size: 11px;
+        color: var(--muted);
+        font-weight: 900;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .ui-metric {
+        font-size: clamp(42px, 6vw, 88px);
+        line-height: 0.86;
+        font-weight: 900;
+        letter-spacing: -0.08em;
+      }
+
+      .ui-screen {
+        padding: 16px;
+        display: grid;
+        grid-template-rows: auto 1fr;
+        gap: 16px;
+      }
+
+      .browser-bar {
+        height: 34px;
+        border-bottom: 1px solid rgba(22, 21, 20, 0.14);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #191817;
+        opacity: 0.28;
+      }
+
+      .screen-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 14px;
+      }
+
+      .screen-hero,
+      .screen-stack,
+      .screen-card {
+        border: 1px solid rgba(22, 21, 20, 0.12);
+        background: rgba(255, 255, 255, 0.54);
+      }
+
+      .screen-hero {
+        min-height: 150px;
+        padding: 18px;
+        display: grid;
+        align-content: end;
+      }
+
+      .screen-stack {
+        display: grid;
+        gap: 12px;
+        padding: 12px;
+      }
+
+      .screen-card {
+        min-height: 52px;
+      }
+
+      .lines {
+        display: grid;
+        gap: 10px;
+      }
+
+      .line {
+        height: 8px;
+        border-radius: 99px;
+        background: #d3cabd;
+      }
+
+      .line:nth-child(1) {
+        width: 82%;
+      }
+
+      .line:nth-child(2) {
+        width: 66%;
+      }
+
+      .line:nth-child(3) {
+        width: 52%;
+      }
+
+      .section-head {
+        max-width: none;
+        margin: 0 0 44px;
+        text-align: left;
+        display: grid;
+        grid-template-columns: minmax(0, 0.95fr) minmax(260px, 0.5fr);
+        gap: 28px;
+        align-items: end;
+        border-bottom: 1px solid var(--soft-line);
+        padding-bottom: 24px;
+      }
+
+      .section-head p {
+        max-width: 440px;
+      }
+
+      .problem-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0;
+        border-top: 1px solid var(--soft-line);
+        border-left: 1px solid var(--soft-line);
+      }
+
+      .problem-card {
+        min-height: 230px;
+        padding: 28px;
+        display: grid;
+        gap: 20px;
+        align-content: start;
+        border-top: 0;
+        border-left: 0;
+        border-radius: 0;
+      }
+
+      .badge {
+        width: 34px;
+        height: 34px;
+        border: 1px solid var(--line);
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        font-weight: 800;
+        font-size: 12px;
+      }
+
+      .compare {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        gap: 0;
+        align-items: stretch;
+        border-top: 1px solid var(--soft-line);
+        border-bottom: 1px solid var(--soft-line);
+      }
+
+      .compare-col {
+        padding: 44px 38px;
+        display: grid;
+        gap: 22px;
+      }
+
+      .compare-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 12px;
+        color: #222;
+      }
+
+      .divider {
+        width: 1px;
+        background: var(--soft-line);
+        position: relative;
+      }
+
+      .vs {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 42px;
+        height: 42px;
+        display: grid;
+        place-items: center;
+        border: 1px solid var(--soft-line);
+        border-radius: 50%;
+        background: var(--surface);
+        font-weight: 800;
+      }
+
+      .mini-browser {
+        min-height: 210px;
+        border: 1px solid var(--soft-line);
+        border-radius: 0;
+        padding: 18px;
+        display: grid;
+        gap: 14px;
+      }
+
+      .work-grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 0;
+        border-top: 1px solid var(--soft-line);
+        border-left: 1px solid var(--soft-line);
+      }
+
+      .work-card {
+        grid-column: span 2;
+        min-height: 210px;
+        padding: 26px;
+        display: grid;
+        gap: 18px;
+        align-content: start;
+        border-top: 0;
+        border-left: 0;
+        border-radius: 0;
+      }
+
+      .work-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+        gap: 16px;
+      }
+
+      .work-num {
+        font-size: 42px;
+        font-weight: 800;
+        line-height: 0.9;
+        letter-spacing: -0.07em;
+      }
+
+      .quiz {
+        padding: 0;
+        overflow: hidden;
+        background: var(--surface);
+      }
+
+      .quiz > .container {
+        width: min(100%, 1440px);
+        padding-inline: 0;
+        display: grid;
+        grid-template-columns: 0.86fr 1.14fr;
+      }
+
+      .quiz-left,
+      .quiz-right {
+        padding: clamp(34px, 5vw, 58px);
+      }
+
+      .quiz-left {
+        border-right: 1px solid var(--soft-line);
+        display: grid;
+        align-content: space-between;
+        min-height: 560px;
+        background:
+          linear-gradient(145deg, rgba(16, 16, 15, 0.9), rgba(45, 41, 35, 0.84)),
+          #171614;
+        color: var(--surface);
+      }
+
+      .quiz-left h2 {
+        max-width: 430px;
+        font-size: clamp(46px, 6vw, 88px);
+        font-weight: 900;
+      }
+
+      .quiz-left p {
+        color: rgba(244, 241, 235, 0.7);
+      }
+
+      .quiz-intro {
+        display: grid;
+        gap: 28px;
+      }
+
+      .progress {
+        display: grid;
+        gap: 10px;
+        width: 220px;
+      }
+
+      .progress-track {
+        height: 4px;
+        background: rgba(244, 241, 235, 0.24);
+      }
+
+      .progress-fill {
+        width: 22%;
+        height: 100%;
+        background: var(--surface);
+      }
+
+      .gift-note {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        color: rgba(244, 241, 235, 0.88);
+        font-weight: 700;
+      }
+
+      .gift-icon {
+        width: 42px;
+        height: 42px;
+        border: 1px solid rgba(244, 241, 235, 0.34);
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        font-size: 20px;
+      }
+
+      .quiz-panel {
+        max-width: 680px;
+        padding: clamp(26px, 4vw, 42px);
+        display: grid;
+        gap: 18px;
+        background: rgba(255, 255, 255, 0.58);
+      }
+
+      .quiz-panel small {
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--muted);
+        font-weight: 800;
+      }
+
+      .answer-list {
+        display: grid;
+        gap: 12px;
+      }
+
+      .answer {
+        min-height: 58px;
+        padding: 0 18px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        border: 1px solid var(--soft-line);
+        border-radius: 0;
+        color: #222;
+      }
+
+      .radio {
+        width: 18px;
+        height: 18px;
+        border: 1px solid var(--line);
+        border-radius: 50%;
+        flex: 0 0 auto;
+      }
+
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+      }
+
+      .project-card {
+        padding: 16px;
+        display: grid;
+        gap: 14px;
+        background: rgba(255, 255, 255, 0.5);
+      }
+
+      .project-card .placeholder {
+        min-height: clamp(240px, 30vw, 360px);
+      }
+
+      .project-card:nth-child(2n) .placeholder {
+        background:
+          linear-gradient(90deg, rgba(22, 21, 20, 0.14) 1px, transparent 1px),
+          linear-gradient(rgba(22, 21, 20, 0.12) 1px, transparent 1px),
+          linear-gradient(145deg, #f2eee6, #d1c8b8);
+        background-size: 42px 42px, 42px 42px, auto;
+      }
+
+      .project-card:nth-child(3n) .placeholder {
+        background:
+          linear-gradient(180deg, transparent 0 18%, rgba(22, 21, 20, 0.08) 18% 19%, transparent 19%),
+          linear-gradient(135deg, rgba(255, 255, 255, 0.45), transparent 48%),
+          #d9d2c6;
+      }
+
+      .project-card p {
+        font-size: 14px;
+      }
+
+      .tiny-button {
+        min-height: 36px;
+        padding: 0 14px;
+        border: 1px solid var(--line);
+        background: var(--surface);
+        font-weight: 800;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+        border-radius: 999px;
+      }
+
+      .tariffs {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0;
+        align-items: stretch;
+        border-top: 1px solid var(--soft-line);
+        border-left: 1px solid var(--soft-line);
+      }
+
+      .tariff-card {
+        padding: 32px;
+        display: grid;
+        gap: 20px;
+        border-top: 0;
+        border-left: 0;
+        border-radius: 0;
+        background: rgba(255, 255, 255, 0.5);
+      }
+
+      .tariff-card.featured {
+        transform: translateY(-14px);
+        background: #fffaf0;
+        box-shadow: 0 32px 70px rgba(31, 27, 20, 0.12);
+      }
+
+      .tag {
+        justify-self: center;
+        border: 1px solid var(--soft-line);
+        padding: 4px 12px;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+
+      .check-list {
+        margin: 0;
+        padding-left: 18px;
+        display: grid;
+        gap: 8px;
+        color: #222;
+      }
+
+      .price {
+        font-size: 28px;
+        font-weight: 800;
+        letter-spacing: -0.04em;
+      }
+
+      .audience-list {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0;
+        border-top: 1px solid var(--soft-line);
+        border-left: 1px solid var(--soft-line);
+      }
+
+      .audience-item {
+        min-height: 210px;
+        padding: 24px;
+        display: grid;
+        align-content: center;
+        border-top: 0;
+        border-left: 0;
+        border-radius: 0;
+      }
+
+      .faq {
+        min-height: auto;
+        padding-bottom: 0;
+      }
+
+      .faq-wrap {
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 56px;
+        align-items: center;
+        padding-bottom: 48px;
+      }
+
+      .faq-list {
+        display: grid;
+      }
+
+      .faq-row {
+        min-height: 58px;
+        padding: 0 18px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: 1px solid var(--soft-line);
+        border-bottom: 0;
+        font-weight: 700;
+        background: rgba(255, 255, 255, 0.36);
+      }
+
+      .faq-row:last-child {
+        border-bottom: 1px solid var(--soft-line);
+      }
+
+      .final-cta {
+        display: grid;
+        gap: 28px;
+        justify-items: start;
+      }
+
+      .final-cta h2 {
+        max-width: 480px;
+      }
+
+      footer {
+        margin: 0;
+        padding: 20px clamp(20px, 4vw, 56px);
+        border-top: 1px solid var(--line);
+        display: flex;
+        justify-content: center;
+        gap: 34px;
+        color: #333;
+        font-weight: 700;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+      }
+
+      @media (max-width: 900px) {
+        .topbar {
+          width: 100%;
+          top: 0;
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 12px;
+        }
+
+        .nav {
+          width: 100%;
+          margin-left: 0;
+          overflow-x: auto;
+          padding-bottom: 2px;
+        }
+
+        .nav a {
+          white-space: nowrap;
+        }
+
+        main {
+          width: 100%;
+          margin: 0;
+        }
+
+        section {
+          width: 100%;
+          min-height: auto;
+          padding: 42px 0;
+        }
+
+        .hero {
+          width: 100%;
+          min-height: 100svh;
+          margin-top: 0;
+          padding: var(--topbar-space) 0 0;
+        }
+
+        h1 {
+          font-size: clamp(46px, 16vw, 70px);
+        }
+
+        h2 {
+          font-size: clamp(34px, 11vw, 48px);
+        }
+
+        .hero-copy {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-copy .button {
+          grid-column: auto;
+          grid-row: auto;
+          justify-self: start;
+        }
+
+        .hero-preview {
+          margin: 0;
+          min-height: 360px;
+        }
+
+        .ui-showcase,
+        .screen-grid,
+        .section-head {
+          grid-template-columns: 1fr;
+        }
+
+        .hero,
+        .compare,
+        .quiz > .container,
+        .faq-wrap {
+          grid-template-columns: 1fr;
+        }
+
+        .divider {
+          height: 1px;
+          width: 100%;
+        }
+
+        .problem-grid,
+        .work-grid,
+        .projects-grid,
+        .tariffs,
+        .audience-list {
+          grid-template-columns: 1fr;
+        }
+
+        .work-card {
+          grid-column: auto;
+        }
+
+        .quiz-left,
+        .quiz-right {
+          padding: 34px 22px;
+        }
+
+        .quiz-left {
+          min-height: 330px;
+          border-right: 0;
+          border-bottom: 1px solid var(--soft-line);
+        }
+
+        .quiz-left h2 {
+          font-size: 44px;
+        }
+
+        .tariff-card.featured {
+          transform: none;
+        }
+
+        footer {
+          padding: 20px;
+          flex-wrap: wrap;
+          gap: 14px;
+          justify-content: flex-start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="hero">
+        <header class="topbar">
+          <div class="brand">JS</div>
+          <nav class="nav" aria-label="Навигация по лендингу">
+            <a href="#problems">Проблемы</a>
+            <a href="#process">Процесс</a>
+            <a href="#quiz">Квиз</a>
+            <a href="#projects">Кейсы</a>
+            <a href="#tariffs">Тарифы</a>
+            <a href="#faq">FAQ</a>
+            <a class="nav-cta" href="#quiz">Разобрать задачу</a>
+          </nav>
+        </header>
+        <div class="container">
+          <div class="hero-copy">
+            <h1>Привлекайте больше клиентов с сайтом, который ведет к заявке</h1>
+            <p>Для предпринимателей, которым нужен не просто сайт "для галочки", а понятный инструмент для привлечения клиентов.</p>
+            <a class="button outline" href="#">Разобрать задачу бесплатно</a>
+          </div>
+          <div class="hero-preview" aria-hidden="true">
+            <div class="ui-showcase">
+              <div class="ui-panel">
+                <span class="ui-kicker">Structure / Design / Launch</span>
+                <div class="ui-metric">WEB<br />SERVICE</div>
+                <div class="lines">
+                  <span class="line"></span>
+                  <span class="line"></span>
+                  <span class="line"></span>
+                </div>
+            </div>
+              <div class="ui-screen">
+                <div class="browser-bar">
+                  <span class="dot"></span>
+                  <span class="dot"></span>
+                  <span class="dot"></span>
+                </div>
+                <div class="screen-grid">
+                  <div class="screen-hero">
+                    <div class="lines">
+                      <span class="line"></span>
+                      <span class="line"></span>
+                      <span class="line"></span>
+                    </div>
+                  </div>
+                  <div class="screen-stack">
+                    <span class="screen-card"></span>
+                    <span class="screen-card"></span>
+                    <span class="screen-card"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="problems">
+        <div class="container">
+          <div class="section-head">
+            <h2>3 причины, почему сайт не приносит заявки</h2>
+            <p>Даже красивый сайт может терять клиентов, если в нем нет ясного предложения, доверия и понятного следующего шага.</p>
+          </div>
+          <div class="problem-grid">
+            <article class="problem-card card">
+              <span class="badge">1</span>
+              <h3>Нет ясности</h3>
+              <p>Посетитель не понимает, что вы предлагаете, кому это подходит и какой результат он получит.</p>
+            </article>
+            <article class="problem-card card">
+              <span class="badge">2</span>
+              <h3>Нет доверия</h3>
+              <p>На сайте много общих слов, но мало фактов, кейсов, отзывов, процесса и понятных доказательств.</p>
+            </article>
+            <article class="problem-card card">
+              <span class="badge">3</span>
+              <h3>Нет следующего шага</h3>
+              <p>Кнопка есть, но человеку непонятно, зачем нажимать, что он получит и что будет после заявки.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="comparison">
+        <div class="container">
+          <div class="compare">
+            <article class="compare-col">
+              <h2>Сайт-визитка</h2>
+              <ul class="compare-list">
+                <li>x рассказывает о компании;</li>
+                <li>x выглядит как онлайн-профиль;</li>
+                <li>x не объясняет путь клиента;</li>
+                <li>x CTA слабый или формальный.</li>
+              </ul>
+              <div class="mini-browser">
+                <div class="placeholder"></div>
+                <span class="line"></span>
+                <span class="line"></span>
+              </div>
+            </article>
+            <div class="divider"><span class="vs">VS</span></div>
+            <article class="compare-col">
+              <h2>Продающий сайт</h2>
+              <ul class="compare-list">
+                <li>✓ объясняет ценность;</li>
+                <li>✓ ведет человека к заявке;</li>
+                <li>✓ показывает доказательства;</li>
+                <li>✓ помогает принять решение.</li>
+              </ul>
+              <div class="mini-browser">
+                <div class="placeholder"></div>
+                <div class="problem-grid" style="grid-template-columns: repeat(3, 1fr); gap: 8px">
+                  <span class="line"></span>
+                  <span class="line"></span>
+                  <span class="line"></span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="process">
+        <div class="container">
+          <div class="section-head">
+            <h2>Как проходит работа над сайтом</h2>
+            <p>Сначала разбираем задачу и структуру, потом переходим к дизайну, сборке и запуску.</p>
+          </div>
+          <div class="work-grid">
+          <article class="work-card card">
+            <div class="work-top"><span class="work-num">1</span></div>
+            <h3>Созвон / Telegram</h3>
+            <p>Вы рассказываете о задаче, бизнесе и текущей проблеме сайта.</p>
+          </article>
+          <article class="work-card card">
+            <div class="work-top"><span class="work-num">2</span></div>
+            <h3>Анализ и структура</h3>
+            <p>Я разбираю аудиторию, оффер, конкурентов и собираю структуру будущего сайта.</p>
+          </article>
+          <article class="work-card card">
+            <div class="work-top"><span class="work-num">3</span></div>
+            <h3>Согласование</h3>
+            <p>Показываю логику блоков, CTA и путь клиента до заявки.</p>
+          </article>
+          <article class="work-card card">
+            <div class="work-top"><span class="work-num">4</span></div>
+            <h3>Дизайн</h3>
+            <p>Делаю визуал на основе утвержденной структуры.</p>
+          </article>
+          <article class="work-card card">
+            <div class="work-top"><span class="work-num">5</span></div>
+            <h3>Сборка</h3>
+            <p>Верстаю сайт, адаптирую под мобильные и подключаю формы.</p>
+          </article>
+          <article class="work-card card">
+            <div class="work-top"><span class="work-num">6</span></div>
+            <h3>Запуск</h3>
+            <p>Проверяем результат, публикуем и передаем готовый сайт.</p>
+          </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="quiz" id="quiz">
+        <div class="container">
+          <div class="quiz-left">
+            <div class="quiz-intro">
+              <h2>Ответьте на 5 вопросов</h2>
+              <p>Подберем формат сайта и первый шаг для вашей задачи</p>
+            </div>
+            <div class="progress">
+              <strong>1 / 5</strong>
+              <div class="progress-track"><div class="progress-fill"></div></div>
+            </div>
+            <div class="gift-note">
+              <span class="gift-icon">□</span>
+              <span>Бесплатный разбор<br />после квиза</span>
+            </div>
+          </div>
+          <div class="quiz-right">
+            <div class="quiz-panel card">
+              <small>Вопрос 1 / 5</small>
+              <h2>Какой сайт вам нужен?</h2>
+              <div class="answer-list">
+                <div class="answer"><span class="radio"></span>Лендинг</div>
+                <div class="answer"><span class="radio"></span>Сайт услуг</div>
+                <div class="answer"><span class="radio"></span>Портфолио</div>
+                <div class="answer"><span class="radio"></span>SaaS / сложный проект</div>
+                <div class="answer"><span class="radio"></span>Пока не уверен</div>
+              </div>
+              <a class="button" href="#">Далее →</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects">
+        <div class="container">
+          <h2 style="margin-bottom: 24px">Мои проекты</h2>
+          <div class="projects-grid">
+            <article class="project-card card">
+              <div class="placeholder"></div>
+              <h3>Лендинг для эксперта</h3>
+              <p>Задача: привлечение заявок на консультацию.</p>
+              <button class="tiny-button">Посмотреть кейс →</button>
+            </article>
+            <article class="project-card card">
+              <div class="placeholder"></div>
+              <h3>Сайт услуг</h3>
+              <p>Задача: усилить доверие и понятность услуги.</p>
+              <button class="tiny-button">Посмотреть кейс →</button>
+            </article>
+            <article class="project-card card">
+              <div class="placeholder"></div>
+              <h3>Корпоративный сайт</h3>
+              <p>Задача: представить компанию и направления.</p>
+              <button class="tiny-button">Посмотреть кейс →</button>
+            </article>
+            <article class="project-card card">
+              <div class="placeholder"></div>
+              <h3>Лендинг мероприятия</h3>
+              <p>Задача: регистрация участников.</p>
+              <button class="tiny-button">Посмотреть кейс →</button>
+            </article>
+            <article class="project-card card">
+              <div class="placeholder"></div>
+              <h3>Сайт студии</h3>
+              <p>Задача: показать сервисы и привлечь клиентов.</p>
+              <button class="tiny-button">Посмотреть кейс →</button>
+            </article>
+            <article class="project-card card">
+              <div class="placeholder"></div>
+              <h3>SaaS-платформа</h3>
+              <p>Задача: интерфейс и личный кабинет.</p>
+              <button class="tiny-button">Посмотреть кейс →</button>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="tariffs">
+        <div class="container">
+          <div class="section-head">
+            <h2>Тарифы</h2>
+          </div>
+          <div class="tariffs">
+            <article class="tariff-card card">
+              <h2>Лендинг</h2>
+              <p>Для услуг, экспертов и локального бизнеса.</p>
+              <ul class="check-list">
+                <li>Анализ и структура</li>
+                <li>Дизайн</li>
+                <li>Верстка</li>
+                <li>Telegram-заявки</li>
+                <li>Базовая SEO-настройка</li>
+              </ul>
+              <div class="price">от 30 000 ₽</div>
+              <button class="tiny-button">Обсудить формат</button>
+            </article>
+            <article class="tariff-card card featured">
+              <h2>Сайт</h2>
+              <p>Для портфолио, компании или нескольких направлений.</p>
+              <ul class="check-list">
+                <li>Анализ и структура</li>
+                <li>Дизайн</li>
+                <li>Несколько страниц</li>
+                <li>Адаптив</li>
+                <li>Интеграции</li>
+              </ul>
+              <div class="price">от 60 000 ₽</div>
+              <button class="tiny-button">Обсудить формат</button>
+            </article>
+            <article class="tariff-card card">
+              <h2>SaaS / сложный проект</h2>
+              <p>Для интерфейсов, кабинетов и нестандартной логики.</p>
+              <ul class="check-list">
+                <li>UX/UI проектирование</li>
+                <li>Верстка / разработка</li>
+                <li>Интеграции и API</li>
+                <li>Автоматизация</li>
+                <li>Тестирование</li>
+              </ul>
+              <div class="price">от 120 000 ₽</div>
+              <button class="tiny-button">Обсудить формат</button>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="container">
+          <div class="section-head">
+            <h2>Для кого подойдут мои услуги</h2>
+          </div>
+          <div class="audience-list">
+            <article class="audience-item card">
+              <div><h3>Предпринимателям</h3><p>Нужен сайт, который помогает продавать и привлекать клиентов.</p></div>
+            </article>
+            <article class="audience-item card">
+              <div><h3>Экспертам</h3><p>Хотят понятный сайт для заявок на консультации и услуги.</p></div>
+            </article>
+            <article class="audience-item card">
+              <div><h3>Локальному бизнесу</h3><p>Нужен современный сайт, который выделяет среди конкурентов.</p></div>
+            </article>
+            <article class="audience-item card">
+              <div><h3>Студиям, школам и сервисам</h3><p>Требуется сайт с несколькими услугами и страницами.</p></div>
+            </article>
+            <article class="audience-item card">
+              <div><h3>Тем, кому нужен сайт для заявок</h3><p>Фокус на результате: заявки, звонки, продажи.</p></div>
+            </article>
+            <article class="audience-item card">
+              <div><h3>Сложным проектам</h3><p>Нужны интерфейсы, интеграции, автоматизация и нестандартная логика.</p></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="faq" id="faq">
+        <div class="container">
+          <div class="faq-wrap">
+            <div>
+              <h2 style="margin-bottom: 24px">FAQ</h2>
+              <div class="faq-list">
+                <div class="faq-row"><span>Сколько стоит сайт?</span><span>+</span></div>
+                <div class="faq-row"><span>Сколько времени занимает разработка?</span><span>+</span></div>
+                <div class="faq-row"><span>Что нужно от клиента на старте?</span><span>+</span></div>
+                <div class="faq-row"><span>Можно ли без готовых текстов?</span><span>+</span></div>
+                <div class="faq-row"><span>Можно ли подключить Telegram-заявки?</span><span>+</span></div>
+                <div class="faq-row"><span>Чем подход отличается от обычного дизайна?</span><span>+</span></div>
+              </div>
+            </div>
+            <div class="final-cta">
+              <h2>Расскажите о задаче — я подскажу, какая структура сайта подойдет.</h2>
+              <a class="button outline" href="#">Разобрать задачу бесплатно</a>
+              <p>Нажимая кнопку, вы соглашаетесь с пользовательским соглашением и политикой конфиденциальности.</p>
+            </div>
+          </div>
+        </div>
+        <footer>
+          <span>Пользовательское соглашение</span>
+          <span>/</span>
+          <span>Политика обработки данных</span>
+          <span>/</span>
+          <span>Контакты</span>
+        </footer>
+      </section>
+    </main>
+    <script>
+      const root = document.documentElement;
+      const topbar = document.querySelector(".topbar");
+
+      function updateTopbarSpace() {
+        const topOffset = window.matchMedia("(max-width: 900px)").matches ? 0 : 22;
+        const bottomGap = window.matchMedia("(max-width: 900px)").matches ? 18 : 32;
+        const height = topbar.offsetHeight + topOffset + bottomGap;
+        root.style.setProperty("--topbar-space", `${height}px`);
+      }
+
+      updateTopbarSpace();
+      window.addEventListener("resize", updateTopbarSpace);
+
+      document.querySelectorAll('.nav a[href^="#"]').forEach((link) => {
+        link.addEventListener("click", (event) => {
+          const target = document.querySelector(link.getAttribute("href"));
+          if (!target) return;
+
+          event.preventDefault();
+          const offset = parseFloat(getComputedStyle(root).getPropertyValue("--topbar-space")) || 0;
+          const top = target.getBoundingClientRect().top + window.scrollY - offset + 8;
+          window.scrollTo({ top, behavior: "smooth" });
+        });
+      });
+    </script>
+  </body>
+</html>

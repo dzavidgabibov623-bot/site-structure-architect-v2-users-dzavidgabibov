@@ -1,0 +1,1212 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MINIM Editorial Landing</title>
+    <style>
+      :root {
+        --bg: #f4f0e8;
+        --surface: #fbf8f1;
+        --surface-2: #eee8dc;
+        --ink: #12110f;
+        --muted: #686158;
+        --line: #25211d;
+        --soft-line: #c9c0b2;
+        --soft: #e7e0d4;
+        --accent: #6f1f25;
+        --accent-dark: #3e1014;
+        --radius: 0;
+        --wrap: 1320px;
+        --topbar-space: 112px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background:
+          linear-gradient(90deg, rgba(37, 33, 29, 0.045) 1px, transparent 1px) 50% 0 / min(16.66vw, 196px) 100%,
+          var(--bg);
+        color: var(--ink);
+        font-family: Inter, Arial, Helvetica, sans-serif;
+        line-height: 1.35;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      .topbar {
+        position: fixed;
+        top: 18px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 10;
+        width: min(var(--wrap), calc(100% - 32px));
+        min-height: 58px;
+        margin: 0 auto;
+        padding: 0 0 0 18px;
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        border: 1px solid var(--line);
+        background: rgba(251, 248, 241, 0.94);
+        backdrop-filter: blur(14px);
+      }
+
+      .brand {
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 24px;
+        font-weight: 500;
+        letter-spacing: -0.02em;
+        white-space: nowrap;
+      }
+
+      .brand::before {
+        content: "";
+        width: 9px;
+        height: 9px;
+        margin-right: 10px;
+        display: inline-block;
+        background: var(--accent);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 22px;
+        margin-left: auto;
+      }
+
+      .nav a {
+        color: var(--ink);
+        text-decoration: none;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .nav-cta {
+        min-height: 58px;
+        padding: 0 18px;
+        border-left: 1px solid var(--line);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--accent);
+        color: var(--surface) !important;
+      }
+
+      main {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        background: transparent;
+      }
+
+      section {
+        scroll-margin-top: var(--topbar-space);
+        position: relative;
+        width: 100%;
+        margin: 0;
+        min-height: 520px;
+        padding: clamp(58px, 8vw, 112px) 0;
+        border: 0;
+        border-top: 1px solid rgba(37, 33, 29, 0.22);
+        border-radius: 0;
+        background: var(--surface);
+      }
+
+      .container {
+        width: min(var(--wrap), calc(100% - clamp(32px, 7vw, 96px)));
+        margin: 0 auto;
+      }
+
+      section::before {
+        content: "SECTION 0" counter(section);
+        counter-increment: section;
+        position: absolute;
+        top: 20px;
+        left: max(14px, calc((100vw - var(--wrap)) / 2 - 34px));
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        color: var(--accent);
+        font-size: 10px;
+        font-weight: 900;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      main {
+        counter-reset: section;
+      }
+
+      section:last-child {
+        border-bottom: 1px solid rgba(37, 33, 29, 0.22);
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+      }
+
+      h1 {
+        max-width: 820px;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(48px, 7vw, 96px);
+        line-height: 0.94;
+        font-weight: 500;
+        letter-spacing: 0;
+      }
+
+      h2 {
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(34px, 4.8vw, 68px);
+        line-height: 0.96;
+        font-weight: 500;
+      }
+
+      h3 {
+        font-size: 18px;
+        line-height: 1.08;
+        font-weight: 900;
+      }
+
+      p {
+        color: var(--muted);
+        font-size: 15px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 48px;
+        padding: 0 24px;
+        border: 1px solid var(--line);
+        background: var(--accent);
+        color: var(--surface);
+        text-decoration: none;
+        font-weight: 800;
+        font-size: 11px;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      .button.outline {
+        background: transparent;
+        color: var(--ink);
+      }
+
+      .card {
+        border: 1px solid var(--soft-line);
+        border-radius: var(--radius);
+        background: transparent;
+      }
+
+      .hero {
+        width: 100%;
+        min-height: 100svh;
+        margin: 0;
+        padding: var(--topbar-space) 0 clamp(56px, 8vh, 96px);
+        border-top: 0;
+        background: var(--surface);
+      }
+
+      .hero-inner {
+        min-height: calc(100svh - var(--topbar-space) - clamp(56px, 8vh, 96px));
+        display: grid;
+        grid-template-columns: minmax(0, 1.08fr) minmax(340px, 0.72fr);
+        gap: clamp(36px, 5vw, 72px);
+        align-items: stretch;
+      }
+
+      .hero-visual {
+        min-height: 420px;
+        border-left: 1px solid var(--line);
+        background:
+          linear-gradient(rgba(18, 17, 15, 0.15), rgba(18, 17, 15, 0.15)),
+          repeating-linear-gradient(110deg, #d7d1c6 0 7px, #bdb5a7 7px 8px, #ece6db 8px 18px);
+        filter: grayscale(1);
+      }
+
+      .hero-copy {
+        display: grid;
+        gap: 28px;
+        max-width: 880px;
+        align-content: center;
+        padding-right: 0;
+      }
+
+      .hero-copy p {
+        max-width: 520px;
+        color: #222;
+        font-size: 18px;
+      }
+
+      .hero-preview {
+        min-height: 300px;
+        padding: 30px;
+        display: grid;
+        gap: 16px;
+        align-content: center;
+      }
+
+      .placeholder {
+        min-height: 150px;
+        border: 1px solid var(--soft-line);
+        background:
+          linear-gradient(rgba(18, 17, 15, 0.12), rgba(18, 17, 15, 0.12)),
+          repeating-linear-gradient(135deg, #f2eee6 0 12px, #d8d0c3 12px 13px, #e8e1d6 13px 24px);
+        filter: grayscale(1);
+      }
+
+      .lines {
+        display: grid;
+        gap: 10px;
+      }
+
+      .line {
+        height: 8px;
+        background: #c9c0b2;
+      }
+
+      .line:nth-child(1) {
+        width: 82%;
+      }
+
+      .line:nth-child(2) {
+        width: 66%;
+      }
+
+      .line:nth-child(3) {
+        width: 52%;
+      }
+
+      .section-head {
+        max-width: none;
+        margin: 0 0 40px;
+        text-align: left;
+        display: grid;
+        grid-template-columns: minmax(260px, 0.72fr) minmax(260px, 0.48fr);
+        gap: 14px;
+        align-items: end;
+      }
+
+      .problem-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0;
+        border-top: 1px solid var(--line);
+        border-left: 1px solid var(--line);
+      }
+
+      .problem-card {
+        min-height: 230px;
+        padding: 28px;
+        display: grid;
+        gap: 20px;
+        align-content: start;
+        border: 0;
+        border-right: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .badge {
+        width: 30px;
+        height: 30px;
+        border: 1px solid var(--line);
+        display: grid;
+        place-items: center;
+        font-weight: 800;
+        color: var(--surface);
+        background: var(--accent);
+      }
+
+      .compare {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        gap: 0;
+        align-items: stretch;
+        border: 1px solid var(--line);
+      }
+
+      .compare-col {
+        min-height: 520px;
+        padding: 42px;
+        display: grid;
+        gap: 22px;
+        align-content: space-between;
+      }
+
+      .compare-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 12px;
+        color: #222;
+        font-size: 15px;
+      }
+
+      .divider {
+        width: 1px;
+        background: var(--line);
+        position: relative;
+      }
+
+      .vs {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 42px;
+        height: 42px;
+        display: grid;
+        place-items: center;
+        border: 1px solid var(--line);
+        background: var(--surface);
+        font-weight: 800;
+        color: var(--accent);
+      }
+
+      .mini-browser {
+        min-height: 190px;
+        border: 1px solid var(--line);
+        padding: 18px;
+        display: grid;
+        gap: 14px;
+      }
+
+      .work-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0;
+        border-top: 1px solid var(--line);
+        border-left: 1px solid var(--line);
+      }
+
+      .work-card {
+        min-height: 210px;
+        padding: 26px;
+        display: grid;
+        gap: 18px;
+        align-content: start;
+        border: 0;
+        border-right: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .work-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+        gap: 16px;
+      }
+
+      .work-num {
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 46px;
+        font-weight: 800;
+        color: var(--accent);
+      }
+
+      .quiz {
+        padding: clamp(58px, 8vw, 112px) 0;
+        overflow: hidden;
+        background: var(--surface);
+      }
+
+      .quiz-inner {
+        display: grid;
+        grid-template-columns: 0.8fr 1.2fr;
+        gap: 0;
+        border: 1px solid var(--line);
+      }
+
+      .quiz-left,
+      .quiz-right {
+        padding: 58px;
+      }
+
+      .quiz-left {
+        border-right: 1px solid var(--line);
+        display: grid;
+        align-content: space-between;
+        min-height: 500px;
+        background: var(--accent-dark);
+      }
+
+      .quiz-left h2 {
+        max-width: 360px;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 58px;
+        font-weight: 500;
+        color: var(--surface);
+      }
+
+      .quiz-left p,
+      .quiz-left strong,
+      .gift-note {
+        color: #efe8dc;
+      }
+
+      .gift-note {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        font-weight: 700;
+      }
+
+      .quiz-intro {
+        display: grid;
+        gap: 28px;
+      }
+
+      .progress {
+        display: grid;
+        gap: 10px;
+        width: 220px;
+      }
+
+      .progress-track {
+        height: 4px;
+        background: rgba(251, 248, 241, 0.24);
+      }
+
+      .progress-fill {
+        width: 22%;
+        height: 100%;
+        background: var(--surface);
+      }
+
+      .gift-icon {
+        width: 42px;
+        height: 42px;
+        border: 1px solid rgba(251, 248, 241, 0.55);
+        display: grid;
+        place-items: center;
+        font-size: 20px;
+      }
+
+      .quiz-panel {
+        max-width: 650px;
+        padding: 34px;
+        display: grid;
+        gap: 18px;
+        border-color: var(--line);
+      }
+
+      .quiz-panel small {
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--muted);
+        font-weight: 800;
+      }
+
+      .answer-list {
+        display: grid;
+        gap: 12px;
+      }
+
+      .answer {
+        min-height: 54px;
+        padding: 0 18px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        border: 1px solid var(--soft-line);
+        color: #222;
+        background: rgba(255, 255, 255, 0.24);
+      }
+
+      .radio {
+        width: 18px;
+        height: 18px;
+        border: 1px solid var(--line);
+        border-radius: 50%;
+        flex: 0 0 auto;
+      }
+
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0;
+        border-top: 1px solid var(--line);
+        border-left: 1px solid var(--line);
+      }
+
+      .project-card {
+        min-height: 315px;
+        padding: 0;
+        display: grid;
+        grid-template-columns: 0.92fr 1fr;
+        gap: 0;
+        border: 0;
+        border-right: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        align-items: stretch;
+      }
+
+      .project-card .placeholder {
+        min-height: 100%;
+        border: 0;
+        border-right: 1px solid var(--soft-line);
+      }
+
+      .project-card h3,
+      .project-card p {
+        margin: 28px 26px 0;
+      }
+
+      .project-card p {
+        font-size: 14px;
+        margin-top: 12px;
+      }
+
+      .tiny-button {
+        min-height: 38px;
+        padding: 0 14px;
+        border: 1px solid var(--line);
+        background: transparent;
+        font-weight: 800;
+        font-size: 11px;
+        text-transform: uppercase;
+      }
+
+      .project-card .tiny-button {
+        align-self: end;
+        justify-self: start;
+        margin: 18px 26px 28px;
+      }
+
+      .tariffs {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0;
+        align-items: stretch;
+        border-top: 1px solid var(--line);
+        border-left: 1px solid var(--line);
+      }
+
+      .tariff-card {
+        min-height: 430px;
+        padding: 30px;
+        display: grid;
+        gap: 20px;
+        border: 0;
+        border-right: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .tariff-card.featured {
+        transform: none;
+        background: #f0e7d8;
+      }
+
+      .tag {
+        justify-self: center;
+        border: 1px solid var(--soft-line);
+        padding: 4px 12px;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+
+      .check-list {
+        margin: 0;
+        padding-left: 18px;
+        display: grid;
+        gap: 8px;
+        color: #222;
+      }
+
+      .price {
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 38px;
+        font-weight: 500;
+        color: var(--accent);
+      }
+
+      .audience-list {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0;
+        border-top: 1px solid var(--line);
+        border-left: 1px solid var(--line);
+      }
+
+      .audience-item {
+        min-height: 190px;
+        padding: 24px;
+        display: grid;
+        align-content: center;
+        border: 0;
+        border-right: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .faq {
+        min-height: auto;
+        padding-bottom: 0;
+      }
+
+      .faq-wrap {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+        align-items: center;
+        padding-bottom: 0;
+        border: 1px solid var(--line);
+      }
+
+      .faq-wrap > div {
+        min-height: 520px;
+        padding: 44px;
+      }
+
+      .faq-wrap > div:first-child {
+        border-right: 1px solid var(--line);
+      }
+
+      .faq-list {
+        display: grid;
+      }
+
+      .faq-row {
+        min-height: 58px;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: 0;
+        border-top: 1px solid var(--soft-line);
+        border-bottom: 0;
+        font-weight: 700;
+      }
+
+      .faq-row:last-child {
+        border-bottom: 1px solid var(--soft-line);
+      }
+
+      .final-cta {
+        display: grid;
+        gap: 28px;
+        justify-items: start;
+      }
+
+      .final-cta h2 {
+        max-width: 480px;
+      }
+
+      footer {
+        margin: 44px 0 0;
+        padding: 20px 0;
+        border-top: 1px solid var(--line);
+        display: flex;
+        justify-content: center;
+        gap: 34px;
+        color: #333;
+        font-weight: 700;
+      }
+
+        @media (max-width: 900px) {
+          .topbar {
+            width: 100%;
+            top: 0;
+            align-items: flex-start;
+            flex-direction: column;
+            gap: 12px;
+            padding: 14px 18px;
+          }
+
+        .nav {
+          width: 100%;
+          margin-left: 0;
+          flex-wrap: wrap;
+          overflow: visible;
+          padding-bottom: 2px;
+          gap: 14px 22px;
+        }
+
+        .nav a {
+          white-space: nowrap;
+        }
+
+        .nav-cta {
+          width: 100%;
+          min-height: 44px;
+          border: 1px solid var(--line);
+        }
+
+        main {
+          width: 100%;
+          margin: 0;
+        }
+
+          section {
+            width: 100%;
+            min-height: auto;
+            padding: 54px 0;
+          }
+
+          .container {
+            width: min(100% - 44px, var(--wrap));
+          }
+
+          section::before {
+            position: static;
+            writing-mode: horizontal-tb;
+            transform: none;
+            display: block;
+            margin: 0 0 18px 22px;
+          }
+
+          .hero {
+            width: 100%;
+            min-height: 100svh;
+            margin-top: 0;
+            padding: var(--topbar-space) 0 44px;
+          }
+
+          .hero-inner {
+            min-height: auto;
+            grid-template-columns: 1fr;
+            gap: 56px;
+          }
+
+          .hero-visual {
+            min-height: 260px;
+            border-left: 0;
+            border-top: 1px solid var(--line);
+          }
+
+          .hero-copy {
+            padding-right: 0;
+          }
+
+        h1 {
+          font-size: 48px;
+        }
+
+        h2 {
+          font-size: 30px;
+        }
+
+        .hero,
+        .compare,
+        .quiz-inner,
+        .faq-wrap,
+        .section-head {
+          grid-template-columns: 1fr;
+        }
+
+        .divider {
+          height: 1px;
+          width: 100%;
+        }
+
+        .problem-grid,
+        .work-grid,
+        .projects-grid,
+        .tariffs,
+        .audience-list {
+          grid-template-columns: 1fr;
+        }
+
+        .project-card {
+          grid-template-columns: 1fr;
+        }
+
+        .project-card .placeholder {
+          min-height: 180px;
+          border-right: 0;
+          border-bottom: 1px solid var(--soft-line);
+        }
+
+        .quiz-left,
+        .quiz-right {
+          padding: 34px 22px;
+        }
+
+        .quiz-left {
+          min-height: 330px;
+          border-right: 0;
+          border-bottom: 1px solid var(--line);
+        }
+
+        .quiz-left h2 {
+          font-size: 40px;
+        }
+
+        .tariff-card.featured {
+          transform: none;
+        }
+
+        .faq-wrap > div {
+          min-height: auto;
+          padding: 28px 22px;
+        }
+
+        .faq-wrap > div:first-child {
+          border-right: 0;
+          border-bottom: 1px solid var(--line);
+        }
+
+        footer {
+          margin: 0 -22px;
+          padding: 20px 22px;
+          flex-wrap: wrap;
+          gap: 14px;
+          justify-content: flex-start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="hero">
+        <header class="topbar">
+          <div class="brand">JS</div>
+          <nav class="nav" aria-label="Навигация по лендингу">
+            <a href="#problems">Проблемы</a>
+            <a href="#process">Процесс</a>
+            <a href="#quiz">Квиз</a>
+            <a href="#projects">Кейсы</a>
+            <a href="#tariffs">Тарифы</a>
+            <a href="#faq">FAQ</a>
+            <a class="nav-cta" href="#quiz">Разобрать задачу</a>
+          </nav>
+        </header>
+        <div class="container hero-inner">
+          <div class="hero-copy">
+            <h1>Привлекайте больше клиентов с сайтом, который ведет к заявке</h1>
+            <p>Для предпринимателей, которым нужен не просто сайт "для галочки", а понятный инструмент для привлечения клиентов.</p>
+            <a class="button outline" href="#">Разобрать задачу бесплатно</a>
+          </div>
+          <div class="hero-visual" aria-hidden="true"></div>
+        </div>
+      </section>
+
+      <section id="problems">
+        <div class="container">
+          <div class="section-head">
+            <h2>3 причины, почему сайт не приносит заявки</h2>
+            <p>Даже красивый сайт может терять клиентов, если в нем нет ясного предложения, доверия и понятного следующего шага.</p>
+          </div>
+          <div class="problem-grid">
+            <article class="problem-card card">
+              <span class="badge">1</span>
+              <h3>Нет ясности</h3>
+              <p>Посетитель не понимает, что вы предлагаете, кому это подходит и какой результат он получит.</p>
+            </article>
+            <article class="problem-card card">
+              <span class="badge">2</span>
+              <h3>Нет доверия</h3>
+              <p>На сайте много общих слов, но мало фактов, кейсов, отзывов, процесса и понятных доказательств.</p>
+            </article>
+            <article class="problem-card card">
+              <span class="badge">3</span>
+              <h3>Нет следующего шага</h3>
+              <p>Кнопка есть, но человеку непонятно, зачем нажимать, что он получит и что будет после заявки.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="comparison">
+        <div class="container compare">
+          <article class="compare-col">
+            <h2>Сайт-визитка</h2>
+            <ul class="compare-list">
+              <li>x рассказывает о компании;</li>
+              <li>x выглядит как онлайн-профиль;</li>
+              <li>x не объясняет путь клиента;</li>
+              <li>x CTA слабый или формальный.</li>
+            </ul>
+            <div class="mini-browser">
+              <div class="placeholder"></div>
+              <span class="line"></span>
+              <span class="line"></span>
+            </div>
+          </article>
+          <div class="divider"><span class="vs">VS</span></div>
+          <article class="compare-col">
+            <h2>Продающий сайт</h2>
+            <ul class="compare-list">
+              <li>✓ объясняет ценность;</li>
+              <li>✓ ведет человека к заявке;</li>
+              <li>✓ показывает доказательства;</li>
+              <li>✓ помогает принять решение.</li>
+            </ul>
+            <div class="mini-browser">
+              <div class="placeholder"></div>
+              <div class="problem-grid" style="grid-template-columns: repeat(3, 1fr); gap: 8px">
+                <span class="line"></span>
+                <span class="line"></span>
+                <span class="line"></span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="process">
+        <div class="container">
+          <div class="section-head">
+            <h2>Как проходит работа над сайтом</h2>
+            <p>Сначала разбираем задачу и структуру, потом переходим к дизайну, сборке и запуску.</p>
+          </div>
+          <div class="work-grid">
+            <article class="work-card card">
+              <div class="work-top"><span class="work-num">1</span></div>
+              <h3>Созвон / Telegram</h3>
+              <p>Вы рассказываете о задаче, бизнесе и текущей проблеме сайта.</p>
+            </article>
+            <article class="work-card card">
+              <div class="work-top"><span class="work-num">2</span></div>
+              <h3>Анализ и структура</h3>
+              <p>Я разбираю аудиторию, оффер, конкурентов и собираю структуру будущего сайта.</p>
+            </article>
+            <article class="work-card card">
+              <div class="work-top"><span class="work-num">3</span></div>
+              <h3>Согласование</h3>
+              <p>Показываю логику блоков, CTA и путь клиента до заявки.</p>
+            </article>
+            <article class="work-card card">
+              <div class="work-top"><span class="work-num">4</span></div>
+              <h3>Дизайн</h3>
+              <p>Делаю визуал на основе утвержденной структуры.</p>
+            </article>
+            <article class="work-card card">
+              <div class="work-top"><span class="work-num">5</span></div>
+              <h3>Сборка</h3>
+              <p>Верстаю сайт, адаптирую под мобильные и подключаю формы.</p>
+            </article>
+            <article class="work-card card">
+              <div class="work-top"><span class="work-num">6</span></div>
+              <h3>Запуск</h3>
+              <p>Проверяем результат, публикуем и передаем готовый сайт.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="quiz" id="quiz">
+        <div class="container quiz-inner">
+        <div class="quiz-left">
+          <div class="quiz-intro">
+            <h2>Ответьте на 5 вопросов</h2>
+            <p>Подберем формат сайта и первый шаг для вашей задачи</p>
+          </div>
+          <div class="progress">
+            <strong>1 / 5</strong>
+            <div class="progress-track"><div class="progress-fill"></div></div>
+          </div>
+          <div class="gift-note">
+            <span class="gift-icon">□</span>
+            <span>Бесплатный разбор<br />после квиза</span>
+          </div>
+        </div>
+        <div class="quiz-right">
+          <div class="quiz-panel card">
+            <small>Вопрос 1 / 5</small>
+            <h2>Какой сайт вам нужен?</h2>
+            <div class="answer-list">
+              <div class="answer"><span class="radio"></span>Лендинг</div>
+              <div class="answer"><span class="radio"></span>Сайт услуг</div>
+              <div class="answer"><span class="radio"></span>Портфолио</div>
+              <div class="answer"><span class="radio"></span>SaaS / сложный проект</div>
+              <div class="answer"><span class="radio"></span>Пока не уверен</div>
+            </div>
+            <a class="button" href="#">Далее →</a>
+          </div>
+        </div>
+        </div>
+      </section>
+
+      <section id="projects">
+        <div class="container">
+        <h2 style="margin-bottom: 24px">Мои проекты</h2>
+        <div class="projects-grid">
+          <article class="project-card card">
+            <div class="placeholder"></div>
+            <h3>Лендинг для эксперта</h3>
+            <p>Задача: привлечение заявок на консультацию.</p>
+            <button class="tiny-button">Посмотреть кейс →</button>
+          </article>
+          <article class="project-card card">
+            <div class="placeholder"></div>
+            <h3>Сайт услуг</h3>
+            <p>Задача: усилить доверие и понятность услуги.</p>
+            <button class="tiny-button">Посмотреть кейс →</button>
+          </article>
+          <article class="project-card card">
+            <div class="placeholder"></div>
+            <h3>Корпоративный сайт</h3>
+            <p>Задача: представить компанию и направления.</p>
+            <button class="tiny-button">Посмотреть кейс →</button>
+          </article>
+          <article class="project-card card">
+            <div class="placeholder"></div>
+            <h3>Лендинг мероприятия</h3>
+            <p>Задача: регистрация участников.</p>
+            <button class="tiny-button">Посмотреть кейс →</button>
+          </article>
+          <article class="project-card card">
+            <div class="placeholder"></div>
+            <h3>Сайт студии</h3>
+            <p>Задача: показать сервисы и привлечь клиентов.</p>
+            <button class="tiny-button">Посмотреть кейс →</button>
+          </article>
+          <article class="project-card card">
+            <div class="placeholder"></div>
+            <h3>SaaS-платформа</h3>
+            <p>Задача: интерфейс и личный кабинет.</p>
+            <button class="tiny-button">Посмотреть кейс →</button>
+          </article>
+        </div>
+        </div>
+      </section>
+
+      <section id="tariffs">
+        <div class="container">
+        <div class="section-head">
+          <h2>Тарифы</h2>
+        </div>
+        <div class="tariffs">
+          <article class="tariff-card card">
+            <h2>Лендинг</h2>
+            <p>Для услуг, экспертов и локального бизнеса.</p>
+            <ul class="check-list">
+              <li>Анализ и структура</li>
+              <li>Дизайн</li>
+              <li>Верстка</li>
+              <li>Telegram-заявки</li>
+              <li>Базовая SEO-настройка</li>
+            </ul>
+            <div class="price">от 30 000 ₽</div>
+            <button class="tiny-button">Обсудить формат</button>
+          </article>
+          <article class="tariff-card card featured">
+            <h2>Сайт</h2>
+            <p>Для портфолио, компании или нескольких направлений.</p>
+            <ul class="check-list">
+              <li>Анализ и структура</li>
+              <li>Дизайн</li>
+              <li>Несколько страниц</li>
+              <li>Адаптив</li>
+              <li>Интеграции</li>
+            </ul>
+            <div class="price">от 60 000 ₽</div>
+            <button class="tiny-button">Обсудить формат</button>
+          </article>
+          <article class="tariff-card card">
+            <h2>SaaS / сложный проект</h2>
+            <p>Для интерфейсов, кабинетов и нестандартной логики.</p>
+            <ul class="check-list">
+              <li>UX/UI проектирование</li>
+              <li>Верстка / разработка</li>
+              <li>Интеграции и API</li>
+              <li>Автоматизация</li>
+              <li>Тестирование</li>
+            </ul>
+            <div class="price">от 120 000 ₽</div>
+            <button class="tiny-button">Обсудить формат</button>
+          </article>
+        </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="container">
+        <div class="section-head">
+          <h2>Для кого подойдут мои услуги</h2>
+        </div>
+        <div class="audience-list">
+          <article class="audience-item card">
+            <div><h3>Предпринимателям</h3><p>Нужен сайт, который помогает продавать и привлекать клиентов.</p></div>
+          </article>
+          <article class="audience-item card">
+            <div><h3>Экспертам</h3><p>Хотят понятный сайт для заявок на консультации и услуги.</p></div>
+          </article>
+          <article class="audience-item card">
+            <div><h3>Локальному бизнесу</h3><p>Нужен современный сайт, который выделяет среди конкурентов.</p></div>
+          </article>
+          <article class="audience-item card">
+            <div><h3>Студиям, школам и сервисам</h3><p>Требуется сайт с несколькими услугами и страницами.</p></div>
+          </article>
+          <article class="audience-item card">
+            <div><h3>Тем, кому нужен сайт для заявок</h3><p>Фокус на результате: заявки, звонки, продажи.</p></div>
+          </article>
+          <article class="audience-item card">
+            <div><h3>Сложным проектам</h3><p>Нужны интерфейсы, интеграции, автоматизация и нестандартная логика.</p></div>
+          </article>
+        </div>
+        </div>
+      </section>
+
+      <section class="faq" id="faq">
+        <div class="container">
+        <div class="faq-wrap">
+          <div>
+            <h2 style="margin-bottom: 24px">FAQ</h2>
+            <div class="faq-list">
+              <div class="faq-row"><span>Сколько стоит сайт?</span><span>+</span></div>
+              <div class="faq-row"><span>Сколько времени занимает разработка?</span><span>+</span></div>
+              <div class="faq-row"><span>Что нужно от клиента на старте?</span><span>+</span></div>
+              <div class="faq-row"><span>Можно ли без готовых текстов?</span><span>+</span></div>
+              <div class="faq-row"><span>Можно ли подключить Telegram-заявки?</span><span>+</span></div>
+              <div class="faq-row"><span>Чем подход отличается от обычного дизайна?</span><span>+</span></div>
+            </div>
+          </div>
+          <div class="final-cta">
+            <h2>Расскажите о задаче — я подскажу, какая структура сайта подойдет.</h2>
+            <a class="button outline" href="#">Разобрать задачу бесплатно</a>
+            <p>Нажимая кнопку, вы соглашаетесь с пользовательским соглашением и политикой конфиденциальности.</p>
+          </div>
+        </div>
+        <footer>
+          <span>Пользовательское соглашение</span>
+          <span>/</span>
+          <span>Политика обработки данных</span>
+          <span>/</span>
+          <span>Контакты</span>
+        </footer>
+        </div>
+      </section>
+    </main>
+    <script>
+      const root = document.documentElement;
+      const topbar = document.querySelector(".topbar");
+
+      function updateTopbarSpace() {
+        const topOffset = window.matchMedia("(max-width: 900px)").matches ? 0 : 16;
+        const bottomGap = window.matchMedia("(max-width: 900px)").matches ? 18 : 32;
+        const height = topbar.offsetHeight + topOffset + bottomGap;
+        root.style.setProperty("--topbar-space", `${height}px`);
+      }
+
+      updateTopbarSpace();
+      window.addEventListener("resize", updateTopbarSpace);
+
+      document.querySelectorAll('.nav a[href^="#"]').forEach((link) => {
+        link.addEventListener("click", (event) => {
+          const target = document.querySelector(link.getAttribute("href"));
+          if (!target) return;
+
+          event.preventDefault();
+          const offset = parseFloat(getComputedStyle(root).getPropertyValue("--topbar-space")) || 0;
+          const top = target.getBoundingClientRect().top + window.scrollY - offset + 8;
+          window.scrollTo({ top, behavior: "smooth" });
+        });
+      });
+    </script>
+  </body>
+</html>
