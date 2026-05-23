@@ -3,18 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Wireframe Landing</title>
+    <title>MINIM Editorial Landing</title>
     <style>
       :root {
-        --bg: #f7f7f4;
-        --surface: #ffffff;
-        --ink: #111111;
-        --muted: #666666;
-        --line: #1f1f1f;
-        --soft-line: #c9c9c4;
-        --soft: #eeeeea;
-        --radius: 8px;
-        --wrap: 1180px;
+        --bg: #f4f0e8;
+        --surface: #fbf8f1;
+        --surface-2: #eee8dc;
+        --ink: #12110f;
+        --muted: #686158;
+        --line: #25211d;
+        --soft-line: #c9c0b2;
+        --soft: #e7e0d4;
+        --accent: #6f1f25;
+        --accent-dark: #3e1014;
+        --radius: 0;
+        --wrap: 1320px;
         --topbar-space: 112px;
       }
 
@@ -24,66 +27,84 @@
 
       body {
         margin: 0;
-        background: var(--bg);
+        background:
+          linear-gradient(90deg, rgba(37, 33, 29, 0.045) 1px, transparent 1px) 50% 0 / min(16.66vw, 196px) 100%,
+          var(--bg);
         color: var(--ink);
-        font-family: Arial, Helvetica, sans-serif;
+        font-family: Inter, Arial, Helvetica, sans-serif;
         line-height: 1.35;
       }
 
       html {
         scroll-behavior: smooth;
+        scroll-padding-top: calc(var(--topbar-space) + 28px);
       }
 
       .topbar {
         position: fixed;
-        top: 16px;
+        top: 18px;
         left: 50%;
         transform: translateX(-50%);
         z-index: 10;
         width: min(var(--wrap), calc(100% - 32px));
-        min-height: 64px;
+        min-height: 58px;
         margin: 0 auto;
-        padding: 10px 14px 10px 20px;
+        padding: 0 0 0 18px;
         display: flex;
         align-items: center;
-        gap: 22px;
+        gap: 18px;
         border: 1px solid var(--line);
-        background: rgba(255, 255, 255, 0.94);
-        backdrop-filter: blur(10px);
+        background: rgba(251, 248, 241, 0.94);
+        backdrop-filter: blur(14px);
       }
 
       .brand {
         font-family: Georgia, "Times New Roman", serif;
-        font-size: 22px;
-        font-weight: 700;
+        font-size: 24px;
+        font-weight: 500;
+        letter-spacing: -0.02em;
         white-space: nowrap;
+      }
+
+      .brand::before {
+        content: "";
+        width: 9px;
+        height: 9px;
+        margin-right: 10px;
+        display: inline-block;
+        background: var(--accent);
       }
 
       .nav {
         display: flex;
         align-items: center;
-        gap: 24px;
+        gap: 22px;
         margin-left: auto;
       }
 
       .nav a {
         color: var(--ink);
         text-decoration: none;
-        font-size: 14px;
+        font-size: 11px;
         font-weight: 800;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
       }
 
       .nav-cta {
-        min-height: 40px;
-        padding: 0 16px;
-        border: 1px solid var(--line);
+        min-height: 58px;
+        padding: 0 18px;
+        border-left: 1px solid var(--line);
         display: inline-flex;
         align-items: center;
         justify-content: center;
+        background: var(--accent);
+        color: var(--surface) !important;
       }
 
       main {
         width: 100%;
+        max-width: none;
         margin: 0;
         background: transparent;
       }
@@ -93,15 +114,42 @@
         position: relative;
         width: 100%;
         margin: 0;
-        min-height: 520px;
-        padding: 44px max(44px, calc((100vw - var(--wrap)) / 2 + 44px));
-        border: 1px solid var(--line);
-        border-bottom: 0;
+        min-height: 100svh;
+        padding: clamp(58px, 8vw, 112px) 0;
+        border: 0;
+        border-top: 1px solid rgba(37, 33, 29, 0.22);
+        border-radius: 0;
         background: var(--surface);
+        display: flex;
+        align-items: center;
+      }
+
+      .container {
+        width: min(var(--wrap), calc(100% - clamp(32px, 7vw, 96px)));
+        margin: 0 auto;
+      }
+
+      section::before {
+        content: "SECTION 0" counter(section);
+        counter-increment: section;
+        position: absolute;
+        top: 20px;
+        left: max(14px, calc((100vw - var(--wrap)) / 2 - 34px));
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        color: var(--accent);
+        font-size: 10px;
+        font-weight: 900;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      main {
+        counter-reset: section;
       }
 
       section:last-child {
-        border-bottom: 1px solid var(--line);
+        border-bottom: 1px solid rgba(37, 33, 29, 0.22);
       }
 
       h1,
@@ -112,79 +160,104 @@
       }
 
       h1 {
-        max-width: 560px;
+        max-width: 940px;
         font-family: Georgia, "Times New Roman", serif;
-        font-size: 58px;
-        line-height: 0.98;
+        font-size: clamp(56px, 7vw, 100px);
+        line-height: 0.94;
         font-weight: 500;
+        letter-spacing: 0;
+        overflow-wrap: break-word;
       }
 
       h2 {
-        font-size: 36px;
-        line-height: 1.05;
-        font-weight: 800;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(34px, 4.8vw, 68px);
+        line-height: 0.96;
+        font-weight: 500;
       }
 
       h3 {
-        font-size: 20px;
-        line-height: 1.15;
-        font-weight: 800;
+        font-size: 18px;
+        line-height: 1.08;
+        font-weight: 900;
       }
 
       p {
         color: var(--muted);
-        font-size: 16px;
+        font-size: 15px;
       }
 
       .button {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        min-height: 54px;
-        padding: 0 28px;
+        min-height: 48px;
+        padding: 0 24px;
         border: 1px solid var(--line);
-        background: var(--ink);
-        color: white;
+        background: var(--accent);
+        color: var(--surface);
         text-decoration: none;
         font-weight: 800;
+        font-size: 11px;
         letter-spacing: 0;
+        text-transform: uppercase;
       }
 
       .button.outline {
-        background: white;
+        background: transparent;
         color: var(--ink);
       }
 
       .card {
         border: 1px solid var(--soft-line);
         border-radius: var(--radius);
-        background: white;
+        background: transparent;
       }
 
       .hero {
         width: 100%;
         min-height: 100svh;
         margin: 0;
-        padding: var(--topbar-space) max(44px, calc((100vw - var(--wrap)) / 2 + 44px)) clamp(48px, 8vh, 96px);
-        border-left: 0;
-        border-right: 0;
+        padding: var(--topbar-space) 0 clamp(56px, 8vh, 96px);
+        border-top: 0;
+        background: var(--surface);
+        display: block;
+      }
+
+      .hero-inner {
+        min-height: calc(100svh - var(--topbar-space) - clamp(56px, 8vh, 96px));
         display: grid;
-        grid-template-columns: 1fr;
-        gap: 36px;
-        align-items: start;
-        align-content: start;
+        grid-template-columns: minmax(0, 1.32fr) minmax(300px, 0.58fr);
+        gap: clamp(34px, 4vw, 58px);
+        align-items: stretch;
+      }
+
+      .hero-visual {
+        min-height: 420px;
+        border-left: 1px solid var(--line);
+        background:
+          linear-gradient(rgba(18, 17, 15, 0.15), rgba(18, 17, 15, 0.15)),
+          repeating-linear-gradient(110deg, #d7d1c6 0 7px, #bdb5a7 7px 8px, #ece6db 8px 18px);
+        filter: grayscale(1);
       }
 
       .hero-copy {
         display: grid;
-        gap: 26px;
-        max-width: 720px;
+        gap: clamp(28px, 4.6vh, 48px);
+        max-width: 960px;
+        align-content: space-between;
+        padding-right: 0;
       }
 
       .hero-copy p {
-        max-width: 470px;
+        max-width: 590px;
         color: #222;
-        font-size: 18px;
+        font-size: clamp(18px, 1.35vw, 22px);
+      }
+
+      .hero-copy .button {
+        width: min(100%, 760px);
+        min-height: 56px;
       }
 
       .hero-preview {
@@ -199,8 +272,9 @@
         min-height: 150px;
         border: 1px solid var(--soft-line);
         background:
-          linear-gradient(to top right, transparent 49.5%, var(--soft-line) 50%, transparent 50.5%),
-          linear-gradient(to bottom right, transparent 49.5%, var(--soft-line) 50%, transparent 50.5%);
+          linear-gradient(rgba(18, 17, 15, 0.12), rgba(18, 17, 15, 0.12)),
+          repeating-linear-gradient(135deg, #f2eee6 0 12px, #d8d0c3 12px 13px, #e8e1d6 13px 24px);
+        filter: grayscale(1);
       }
 
       .lines {
@@ -210,8 +284,7 @@
 
       .line {
         height: 8px;
-        border-radius: 99px;
-        background: #d8d8d3;
+        background: #c9c0b2;
       }
 
       .line:nth-child(1) {
@@ -227,48 +300,59 @@
       }
 
       .section-head {
-        max-width: 620px;
-        margin: 0 auto 40px;
-        text-align: center;
+        max-width: none;
+        margin: 0 0 40px;
+        text-align: left;
         display: grid;
+        grid-template-columns: minmax(260px, 0.72fr) minmax(260px, 0.48fr);
         gap: 14px;
+        align-items: end;
       }
 
       .problem-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 18px;
+        gap: 0;
+        border-top: 1px solid var(--line);
+        border-left: 1px solid var(--line);
       }
 
       .problem-card {
         min-height: 230px;
-        padding: 26px;
+        padding: 28px;
         display: grid;
         gap: 20px;
         align-content: start;
+        border: 0;
+        border-right: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
       }
 
       .badge {
-        width: 34px;
-        height: 34px;
+        width: 30px;
+        height: 30px;
         border: 1px solid var(--line);
-        border-radius: 50%;
         display: grid;
         place-items: center;
         font-weight: 800;
+        color: var(--surface);
+        background: var(--accent);
       }
 
       .compare {
         display: grid;
         grid-template-columns: 1fr auto 1fr;
-        gap: 34px;
+        gap: 0;
         align-items: stretch;
+        border: 1px solid var(--line);
       }
 
       .compare-col {
-        padding: 34px;
+        min-height: 520px;
+        padding: 42px;
         display: grid;
         gap: 22px;
+        align-content: space-between;
       }
 
       .compare-list {
@@ -278,11 +362,12 @@
         display: grid;
         gap: 12px;
         color: #222;
+        font-size: 15px;
       }
 
       .divider {
         width: 1px;
-        background: var(--soft-line);
+        background: var(--line);
         position: relative;
       }
 
@@ -295,16 +380,15 @@
         height: 42px;
         display: grid;
         place-items: center;
-        border: 1px solid var(--soft-line);
-        border-radius: 50%;
-        background: white;
+        border: 1px solid var(--line);
+        background: var(--surface);
         font-weight: 800;
+        color: var(--accent);
       }
 
       .mini-browser {
-        min-height: 150px;
-        border: 1px solid var(--soft-line);
-        border-radius: 8px;
+        min-height: 190px;
+        border: 1px solid var(--line);
         padding: 18px;
         display: grid;
         gap: 14px;
@@ -313,15 +397,20 @@
       .work-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 16px;
+        gap: 0;
+        border-top: 1px solid var(--line);
+        border-left: 1px solid var(--line);
       }
 
       .work-card {
-        min-height: 180px;
-        padding: 24px;
+        min-height: 210px;
+        padding: 26px;
         display: grid;
         gap: 18px;
         align-content: start;
+        border: 0;
+        border-right: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
       }
 
       .work-top {
@@ -332,35 +421,57 @@
       }
 
       .work-num {
-        font-size: 22px;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 46px;
         font-weight: 800;
+        color: var(--accent);
       }
 
       .quiz {
+        padding: clamp(58px, 8vw, 112px) 0;
+        overflow: hidden;
+        background: var(--surface);
+      }
+
+      .quiz-inner {
         display: grid;
         grid-template-columns: 0.8fr 1.2fr;
         gap: 0;
-        padding: 0;
-        overflow: hidden;
+        border: 1px solid var(--line);
       }
 
       .quiz-left,
       .quiz-right {
-        padding: 52px;
+        padding: 58px;
       }
 
       .quiz-left {
-        border-right: 1px solid var(--soft-line);
+        border-right: 1px solid var(--line);
         display: grid;
         align-content: space-between;
         min-height: 500px;
+        background: var(--accent-dark);
       }
 
       .quiz-left h2 {
         max-width: 360px;
         font-family: Georgia, "Times New Roman", serif;
-        font-size: 52px;
+        font-size: 58px;
         font-weight: 500;
+        color: var(--surface);
+      }
+
+      .quiz-left p,
+      .quiz-left strong,
+      .gift-note {
+        color: #efe8dc;
+      }
+
+      .gift-note {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        font-weight: 700;
       }
 
       .quiz-intro {
@@ -376,28 +487,19 @@
 
       .progress-track {
         height: 4px;
-        background: var(--soft);
+        background: rgba(251, 248, 241, 0.24);
       }
 
       .progress-fill {
         width: 22%;
         height: 100%;
-        background: var(--ink);
-      }
-
-      .gift-note {
-        display: flex;
-        align-items: center;
-        gap: 14px;
-        color: #222;
-        font-weight: 700;
+        background: var(--surface);
       }
 
       .gift-icon {
         width: 42px;
         height: 42px;
-        border: 1px solid var(--soft-line);
-        border-radius: 50%;
+        border: 1px solid rgba(251, 248, 241, 0.55);
         display: grid;
         place-items: center;
         font-size: 20px;
@@ -408,6 +510,7 @@
         padding: 34px;
         display: grid;
         gap: 18px;
+        border-color: var(--line);
       }
 
       .quiz-panel small {
@@ -429,8 +532,8 @@
         align-items: center;
         gap: 14px;
         border: 1px solid var(--soft-line);
-        border-radius: 8px;
         color: #222;
+        background: rgba(255, 255, 255, 0.24);
       }
 
       .radio {
@@ -443,48 +546,85 @@
 
       .projects-grid {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 16px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0;
+        border-top: 1px solid var(--line);
+        border-left: 1px solid var(--line);
       }
 
       .project-card {
-        padding: 14px;
+        min-height: 315px;
+        padding: 0;
         display: grid;
-        gap: 14px;
+        grid-template-columns: 0.92fr 1fr;
+        gap: 0;
+        border: 0;
+        border-right: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        align-items: stretch;
       }
 
       .project-card .placeholder {
-        min-height: 130px;
+        min-height: 100%;
+        border: 0;
+        border-right: 1px solid var(--soft-line);
+      }
+
+      .project-card h3,
+      .project-card p {
+        margin: 28px 26px 0;
       }
 
       .project-card p {
         font-size: 14px;
+        margin-top: 12px;
       }
 
       .tiny-button {
-        min-height: 36px;
+        min-height: 38px;
         padding: 0 14px;
         border: 1px solid var(--line);
-        background: white;
+        background: transparent;
         font-weight: 800;
-        font-size: 13px;
+        font-size: 11px;
+        text-transform: uppercase;
+      }
+
+      .project-card .tiny-button {
+        align-self: end;
+        justify-self: start;
+        margin: 18px 26px 28px;
+      }
+
+      #projects,
+      #tariffs {
+        min-height: calc(100svh + var(--topbar-space));
+        padding-top: calc(var(--topbar-space) + clamp(44px, 6vw, 78px));
+        align-items: start;
       }
 
       .tariffs {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 18px;
+        gap: 0;
         align-items: stretch;
+        border-top: 1px solid var(--line);
+        border-left: 1px solid var(--line);
       }
 
       .tariff-card {
-        padding: 28px;
+        min-height: 430px;
+        padding: 30px;
         display: grid;
         gap: 20px;
+        border: 0;
+        border-right: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
       }
 
       .tariff-card.featured {
-        transform: translateY(-14px);
+        transform: none;
+        background: #f0e7d8;
       }
 
       .tag {
@@ -505,14 +645,18 @@
       }
 
       .price {
-        font-size: 24px;
-        font-weight: 800;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 38px;
+        font-weight: 500;
+        color: var(--accent);
       }
 
       .audience-list {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 16px;
+        gap: 0;
+        border-top: 1px solid var(--line);
+        border-left: 1px solid var(--line);
       }
 
       .audience-item {
@@ -520,19 +664,31 @@
         padding: 24px;
         display: grid;
         align-content: center;
+        border: 0;
+        border-right: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
       }
 
       .faq {
-        min-height: auto;
         padding-bottom: 0;
       }
 
       .faq-wrap {
         display: grid;
-        grid-template-columns: 1.05fr 0.95fr;
-        gap: 56px;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
         align-items: center;
-        padding-bottom: 48px;
+        padding-bottom: 0;
+        border: 1px solid var(--line);
+      }
+
+      .faq-wrap > div {
+        min-height: 520px;
+        padding: 44px;
+      }
+
+      .faq-wrap > div:first-child {
+        border-right: 1px solid var(--line);
       }
 
       .faq-list {
@@ -540,12 +696,13 @@
       }
 
       .faq-row {
-        min-height: 50px;
-        padding: 0 18px;
+        min-height: 58px;
+        padding: 0;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        border: 1px solid var(--soft-line);
+        border: 0;
+        border-top: 1px solid var(--soft-line);
         border-bottom: 0;
         font-weight: 700;
       }
@@ -565,8 +722,8 @@
       }
 
       footer {
-        margin: 0 -44px;
-        padding: 20px 44px;
+        margin: 44px 0 0;
+        padding: 20px 0;
         border-top: 1px solid var(--line);
         display: flex;
         justify-content: center;
@@ -575,47 +732,91 @@
         font-weight: 700;
       }
 
-      @media (max-width: 900px) {
-        .topbar {
-          width: 100%;
-          top: 0;
-          align-items: flex-start;
-          flex-direction: column;
-          gap: 12px;
-        }
+        @media (max-width: 900px) {
+          .topbar {
+            width: calc(100% - 24px);
+            top: 0;
+            left: 12px;
+            transform: none;
+            align-items: flex-start;
+            flex-direction: column;
+            gap: 12px;
+            padding: 14px 18px;
+          }
 
         .nav {
           width: 100%;
           margin-left: 0;
-          overflow-x: auto;
+          display: grid;
+          grid-template-columns: repeat(3, max-content);
+          justify-content: start;
+          overflow: visible;
           padding-bottom: 2px;
+          gap: 14px 22px;
         }
 
         .nav a {
           white-space: nowrap;
         }
 
+        .nav-cta {
+          width: auto;
+          min-height: 44px;
+          border: 1px solid var(--line);
+          grid-column: 1 / -1;
+        }
+
         main {
           width: 100%;
-          margin: 10px 0;
+          margin: 0;
         }
 
-        section {
-          width: 100%;
-          min-height: auto;
-          padding: 36px 22px;
-        }
+          section {
+            width: 100%;
+            min-height: 100svh;
+            padding: 54px 0;
+            display: flex;
+            align-items: center;
+          }
 
-        .hero {
-          width: 100%;
-          min-height: 100svh;
-          margin-top: 0;
-          padding: var(--topbar-space) 10px 44px;
-          gap: 56px;
-        }
+          .container {
+            width: min(100% - 44px, var(--wrap));
+          }
+
+          section::before {
+            position: static;
+            writing-mode: horizontal-tb;
+            transform: none;
+            display: block;
+            margin: 0 0 18px 22px;
+          }
+
+          .hero {
+            width: 100%;
+            min-height: 100svh;
+            margin-top: 0;
+            padding: var(--topbar-space) 0 44px;
+            display: block;
+          }
+
+          .hero-inner {
+            min-height: auto;
+            grid-template-columns: 1fr;
+            gap: 56px;
+          }
+
+          .hero-visual {
+            min-height: 260px;
+            border-left: 0;
+            border-top: 1px solid var(--line);
+          }
+
+          .hero-copy {
+            padding-right: 0;
+          }
 
         h1 {
-          font-size: 42px;
+          font-size: clamp(46px, 11.6vw, 58px);
         }
 
         h2 {
@@ -624,8 +825,9 @@
 
         .hero,
         .compare,
-        .quiz,
-        .faq-wrap {
+        .quiz-inner,
+        .faq-wrap,
+        .section-head {
           grid-template-columns: 1fr;
         }
 
@@ -642,6 +844,16 @@
           grid-template-columns: 1fr;
         }
 
+        .project-card {
+          grid-template-columns: 1fr;
+        }
+
+        .project-card .placeholder {
+          min-height: 180px;
+          border-right: 0;
+          border-bottom: 1px solid var(--soft-line);
+        }
+
         .quiz-left,
         .quiz-right {
           padding: 34px 22px;
@@ -650,7 +862,7 @@
         .quiz-left {
           min-height: 330px;
           border-right: 0;
-          border-bottom: 1px solid var(--soft-line);
+          border-bottom: 1px solid var(--line);
         }
 
         .quiz-left h2 {
@@ -661,8 +873,25 @@
           transform: none;
         }
 
+        #projects,
+        #tariffs {
+          min-height: auto;
+          padding-top: calc(var(--topbar-space) + 34px);
+          align-items: start;
+        }
+
+        .faq-wrap > div {
+          min-height: auto;
+          padding: 28px 22px;
+        }
+
+        .faq-wrap > div:first-child {
+          border-right: 0;
+          border-bottom: 1px solid var(--line);
+        }
+
         footer {
-          margin: 0 -22px;
+          margin: 0;
           padding: 20px 22px;
           flex-wrap: wrap;
           gap: 14px;
@@ -686,39 +915,44 @@
             <a class="nav-cta" href="#quiz">Разобрать задачу</a>
           </nav>
         </header>
-        <div class="hero-copy">
-          <h1>Привлекайте больше клиентов с сайтом, который ведет к заявке</h1>
-          <p>Для предпринимателей, которым нужен не просто сайт "для галочки", а понятный инструмент для привлечения клиентов.</p>
-          <a class="button outline" href="#">Разобрать задачу бесплатно</a>
+        <div class="container hero-inner">
+          <div class="hero-copy">
+            <h1>Привлекайте больше клиентов с сайтом, который ведет к заявке</h1>
+            <p>Для предпринимателей, которым нужен не просто сайт "для галочки", а понятный инструмент для привлечения клиентов.</p>
+            <a class="button outline" href="#">Разобрать задачу бесплатно</a>
+          </div>
+          <div class="hero-visual" aria-hidden="true"></div>
         </div>
       </section>
 
       <section id="problems">
-        <div class="section-head">
-          <h2>3 причины, почему сайт не приносит заявки</h2>
-          <p>Даже красивый сайт может терять клиентов, если в нем нет ясного предложения, доверия и понятного следующего шага.</p>
-        </div>
-        <div class="problem-grid">
-          <article class="problem-card card">
-            <span class="badge">1</span>
-            <h3>Нет ясности</h3>
-            <p>Посетитель не понимает, что вы предлагаете, кому это подходит и какой результат он получит.</p>
-          </article>
-          <article class="problem-card card">
-            <span class="badge">2</span>
-            <h3>Нет доверия</h3>
-            <p>На сайте много общих слов, но мало фактов, кейсов, отзывов, процесса и понятных доказательств.</p>
-          </article>
-          <article class="problem-card card">
-            <span class="badge">3</span>
-            <h3>Нет следующего шага</h3>
-            <p>Кнопка есть, но человеку непонятно, зачем нажимать, что он получит и что будет после заявки.</p>
-          </article>
+        <div class="container">
+          <div class="section-head">
+            <h2>3 причины, почему сайт не приносит заявки</h2>
+            <p>Даже красивый сайт может терять клиентов, если в нем нет ясного предложения, доверия и понятного следующего шага.</p>
+          </div>
+          <div class="problem-grid">
+            <article class="problem-card card">
+              <span class="badge">1</span>
+              <h3>Нет ясности</h3>
+              <p>Посетитель не понимает, что вы предлагаете, кому это подходит и какой результат он получит.</p>
+            </article>
+            <article class="problem-card card">
+              <span class="badge">2</span>
+              <h3>Нет доверия</h3>
+              <p>На сайте много общих слов, но мало фактов, кейсов, отзывов, процесса и понятных доказательств.</p>
+            </article>
+            <article class="problem-card card">
+              <span class="badge">3</span>
+              <h3>Нет следующего шага</h3>
+              <p>Кнопка есть, но человеку непонятно, зачем нажимать, что он получит и что будет после заявки.</p>
+            </article>
+          </div>
         </div>
       </section>
 
-      <section id="process">
-        <div class="compare">
+      <section id="comparison">
+        <div class="container compare">
           <article class="compare-col">
             <h2>Сайт-визитка</h2>
             <ul class="compare-list">
@@ -754,46 +988,49 @@
         </div>
       </section>
 
-      <section>
-        <div class="section-head">
-          <h2>Как проходит работа над сайтом</h2>
-          <p>Сначала разбираем задачу и структуру, потом переходим к дизайну, сборке и запуску.</p>
-        </div>
-        <div class="work-grid">
-          <article class="work-card card">
-            <div class="work-top"><span class="work-num">1</span></div>
-            <h3>Созвон / Telegram</h3>
-            <p>Вы рассказываете о задаче, бизнесе и текущей проблеме сайта.</p>
-          </article>
-          <article class="work-card card">
-            <div class="work-top"><span class="work-num">2</span></div>
-            <h3>Анализ и структура</h3>
-            <p>Я разбираю аудиторию, оффер, конкурентов и собираю структуру будущего сайта.</p>
-          </article>
-          <article class="work-card card">
-            <div class="work-top"><span class="work-num">3</span></div>
-            <h3>Согласование</h3>
-            <p>Показываю логику блоков, CTA и путь клиента до заявки.</p>
-          </article>
-          <article class="work-card card">
-            <div class="work-top"><span class="work-num">4</span></div>
-            <h3>Дизайн</h3>
-            <p>Делаю визуал на основе утвержденной структуры.</p>
-          </article>
-          <article class="work-card card">
-            <div class="work-top"><span class="work-num">5</span></div>
-            <h3>Сборка</h3>
-            <p>Верстаю сайт, адаптирую под мобильные и подключаю формы.</p>
-          </article>
-          <article class="work-card card">
-            <div class="work-top"><span class="work-num">6</span></div>
-            <h3>Запуск</h3>
-            <p>Проверяем результат, публикуем и передаем готовый сайт.</p>
-          </article>
+      <section id="process">
+        <div class="container">
+          <div class="section-head">
+            <h2>Как проходит работа над сайтом</h2>
+            <p>Сначала разбираем задачу и структуру, потом переходим к дизайну, сборке и запуску.</p>
+          </div>
+          <div class="work-grid">
+            <article class="work-card card">
+              <div class="work-top"><span class="work-num">1</span></div>
+              <h3>Созвон / Telegram</h3>
+              <p>Вы рассказываете о задаче, бизнесе и текущей проблеме сайта.</p>
+            </article>
+            <article class="work-card card">
+              <div class="work-top"><span class="work-num">2</span></div>
+              <h3>Анализ и структура</h3>
+              <p>Я разбираю аудиторию, оффер, конкурентов и собираю структуру будущего сайта.</p>
+            </article>
+            <article class="work-card card">
+              <div class="work-top"><span class="work-num">3</span></div>
+              <h3>Согласование</h3>
+              <p>Показываю логику блоков, CTA и путь клиента до заявки.</p>
+            </article>
+            <article class="work-card card">
+              <div class="work-top"><span class="work-num">4</span></div>
+              <h3>Дизайн</h3>
+              <p>Делаю визуал на основе утвержденной структуры.</p>
+            </article>
+            <article class="work-card card">
+              <div class="work-top"><span class="work-num">5</span></div>
+              <h3>Сборка</h3>
+              <p>Верстаю сайт, адаптирую под мобильные и подключаю формы.</p>
+            </article>
+            <article class="work-card card">
+              <div class="work-top"><span class="work-num">6</span></div>
+              <h3>Запуск</h3>
+              <p>Проверяем результат, публикуем и передаем готовый сайт.</p>
+            </article>
+          </div>
         </div>
       </section>
 
       <section class="quiz" id="quiz">
+        <div class="container quiz-inner">
         <div class="quiz-left">
           <div class="quiz-intro">
             <h2>Ответьте на 5 вопросов</h2>
@@ -822,9 +1059,11 @@
             <a class="button" href="#">Далее →</a>
           </div>
         </div>
+        </div>
       </section>
 
       <section id="projects">
+        <div class="container">
         <h2 style="margin-bottom: 24px">Мои проекты</h2>
         <div class="projects-grid">
           <article class="project-card card">
@@ -864,9 +1103,11 @@
             <button class="tiny-button">Посмотреть кейс →</button>
           </article>
         </div>
+        </div>
       </section>
 
       <section id="tariffs">
+        <div class="container">
         <div class="section-head">
           <h2>Тарифы</h2>
         </div>
@@ -911,9 +1152,11 @@
             <button class="tiny-button">Обсудить формат</button>
           </article>
         </div>
+        </div>
       </section>
 
       <section>
+        <div class="container">
         <div class="section-head">
           <h2>Для кого подойдут мои услуги</h2>
         </div>
@@ -937,9 +1180,11 @@
             <div><h3>Сложным проектам</h3><p>Нужны интерфейсы, интеграции, автоматизация и нестандартная логика.</p></div>
           </article>
         </div>
+        </div>
       </section>
 
       <section class="faq" id="faq">
+        <div class="container">
         <div class="faq-wrap">
           <div>
             <h2 style="margin-bottom: 24px">FAQ</h2>
@@ -965,6 +1210,7 @@
           <span>/</span>
           <span>Контакты</span>
         </footer>
+        </div>
       </section>
     </main>
     <script>
@@ -973,7 +1219,7 @@
 
       function updateTopbarSpace() {
         const topOffset = window.matchMedia("(max-width: 900px)").matches ? 0 : 16;
-        const bottomGap = window.matchMedia("(max-width: 900px)").matches ? 18 : 32;
+        const bottomGap = window.matchMedia("(max-width: 900px)").matches ? 24 : 40;
         const height = topbar.offsetHeight + topOffset + bottomGap;
         root.style.setProperty("--topbar-space", `${height}px`);
       }
@@ -988,7 +1234,7 @@
 
           event.preventDefault();
           const offset = parseFloat(getComputedStyle(root).getPropertyValue("--topbar-space")) || 0;
-          const top = target.getBoundingClientRect().top + window.scrollY - offset + 8;
+          const top = target.getBoundingClientRect().top + window.scrollY - offset - 12;
           window.scrollTo({ top, behavior: "smooth" });
         });
       });
