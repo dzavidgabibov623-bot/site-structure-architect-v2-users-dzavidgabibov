@@ -129,25 +129,6 @@
         margin: 0 auto;
       }
 
-      section::before {
-        content: "SECTION 0" counter(section);
-        counter-increment: section;
-        position: absolute;
-        top: 20px;
-        left: max(14px, calc((100vw - var(--wrap)) / 2 - 34px));
-        writing-mode: vertical-rl;
-        transform: rotate(180deg);
-        color: var(--accent);
-        font-size: 10px;
-        font-weight: 900;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-      }
-
-      main {
-        counter-reset: section;
-      }
-
       section:last-child {
         border-bottom: 1px solid rgba(37, 33, 29, 0.22);
       }
@@ -546,38 +527,32 @@
 
       .projects-grid {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0;
-        border-top: 1px solid var(--line);
-        border-left: 1px solid var(--line);
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
       }
 
       .project-card {
-        min-height: 315px;
-        padding: 0;
+        min-height: 340px;
+        padding: 14px;
         display: grid;
-        grid-template-columns: 0.92fr 1fr;
-        gap: 0;
-        border: 0;
-        border-right: 1px solid var(--line);
-        border-bottom: 1px solid var(--line);
-        align-items: stretch;
+        grid-template-columns: 1fr;
+        gap: 14px;
+        border: 1px solid var(--line);
+        align-content: start;
       }
 
       .project-card .placeholder {
-        min-height: 100%;
-        border: 0;
-        border-right: 1px solid var(--soft-line);
+        min-height: 150px;
+        border: 1px solid var(--soft-line);
       }
 
       .project-card h3,
       .project-card p {
-        margin: 28px 26px 0;
+        margin: 0;
       }
 
       .project-card p {
         font-size: 14px;
-        margin-top: 12px;
       }
 
       .tiny-button {
@@ -593,13 +568,13 @@
       .project-card .tiny-button {
         align-self: end;
         justify-self: start;
-        margin: 18px 26px 28px;
+        margin: 8px 0 0;
       }
 
       #projects,
       #tariffs {
-        min-height: calc(100svh + var(--topbar-space));
-        padding-top: calc(var(--topbar-space) + clamp(44px, 6vw, 78px));
+        min-height: 100svh;
+        padding-top: calc(var(--topbar-space) + clamp(24px, 3vw, 40px));
         align-items: start;
       }
 
@@ -671,6 +646,8 @@
 
       .faq {
         padding-bottom: 0;
+        padding-top: calc(var(--topbar-space) + clamp(20px, 3vw, 34px));
+        align-items: start;
       }
 
       .faq-wrap {
@@ -783,14 +760,6 @@
             width: min(100% - 44px, var(--wrap));
           }
 
-          section::before {
-            position: static;
-            writing-mode: horizontal-tb;
-            transform: none;
-            display: block;
-            margin: 0 0 18px 22px;
-          }
-
           .hero {
             width: 100%;
             min-height: 100svh;
@@ -850,8 +819,6 @@
 
         .project-card .placeholder {
           min-height: 180px;
-          border-right: 0;
-          border-bottom: 1px solid var(--soft-line);
         }
 
         .quiz-left,
@@ -876,8 +843,12 @@
         #projects,
         #tariffs {
           min-height: auto;
-          padding-top: calc(var(--topbar-space) + 34px);
+          padding-top: calc(var(--topbar-space) + 24px);
           align-items: start;
+        }
+
+        .faq {
+          padding-top: calc(var(--topbar-space) + 24px);
         }
 
         .faq-wrap > div {
@@ -1233,8 +1204,10 @@
           if (!target) return;
 
           event.preventDefault();
-          const offset = parseFloat(getComputedStyle(root).getPropertyValue("--topbar-space")) || 0;
-          const top = target.getBoundingClientRect().top + window.scrollY - offset - 12;
+          const anchor = target.querySelector(".container") || target;
+          const topbarRect = topbar.getBoundingClientRect();
+          const visualGap = window.matchMedia("(max-width: 900px)").matches ? 18 : 24;
+          const top = anchor.getBoundingClientRect().top + window.scrollY - topbarRect.bottom - visualGap;
           window.scrollTo({ top, behavior: "smooth" });
         });
       });
